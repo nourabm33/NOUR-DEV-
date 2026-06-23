@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dev Portfolio — Web Developer &amp; UI/UX Enthusiast</title>
-  <meta name="description" content="Professional web developer portfolio showcasing modern, responsive websites and full-stack applications. Available for freelance projects." />
-  <meta name="keywords" content="web developer, portfolio, frontend, full stack, React, Node.js, freelance" />
-  <meta name="author" content="Dev Portfolio" />
+  <title>Nour//Dev — Web Developer &amp; UI/UX Enthusiast</title>
+  <meta name="description" content="Professional web developer portfolio by Nour — modern, responsive websites and full-stack applications. Available for freelance projects." />
+  <meta name="keywords" content="web developer, portfolio, frontend, full stack, React, Node.js, freelance, Nour" />
+  <meta name="author" content="Nour//Dev" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Dev Portfolio — Web Developer & UI/UX Enthusiast" />
-  <meta property="og:description" content="Professional web developer portfolio showcasing modern, responsive websites and full-stack applications." />
+  <meta property="og:title" content="Nour//Dev — Web Developer & UI/UX Enthusiast" />
+  <meta property="og:description" content="Professional web developer portfolio by Nour — modern, responsive websites and full-stack applications." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="assets/img/og-preview.png" />
   <meta property="og:url" content="" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Dev Portfolio — Web Developer & UI/UX Enthusiast" />
-  <meta name="twitter:description" content="Professional web developer portfolio showcasing modern, responsive websites and full-stack applications." />
+  <meta name="twitter:title" content="Nour//Dev — Web Developer & UI/UX Enthusiast" />
+  <meta name="twitter:description" content="Professional web developer portfolio by Nour — modern, responsive websites and full-stack applications." />
 
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#60;/&#62;</text></svg>" />
@@ -39,7 +39,7 @@
   <!-- ========== NAVBAR ========== -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
-      <a href="#home" class="nav-logo">&lt;Dev /&gt;</a>
+      <a href="#home" class="nav-logo"><img src="assets/img/logo.png" alt="Nour//Dev" class="nav-logo-img" /></a>
       <ul class="nav-links" id="navLinks">
         <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
         <li><a href="#about" class="nav-link" data-section="about">About</a></li>
@@ -62,10 +62,67 @@
 
   <!-- ========== HERO ========== -->
   <section class="hero" id="home">
-    <canvas id="particleCanvas" class="particle-canvas"></canvas>
+    <canvas id="starCanvas" class="star-canvas"></canvas>
+    <div class="nebula-overlay"></div>
+
+    <!-- Floating Astronaut -->
+    <div class="astronaut" id="astronaut">
+      <svg viewBox="0 0 220 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Helmet -->
+        <ellipse cx="110" cy="68" rx="48" ry="52" fill="#e4e8ed" stroke="#c0c8d4" stroke-width="2"/>
+        <!-- Visor -->
+        <ellipse cx="110" cy="62" rx="35" ry="38" fill="#0a0a2e"/>
+        <ellipse cx="110" cy="62" rx="35" ry="38" fill="url(#visorGrad)" opacity="0.7"/>
+        <!-- Visor shine -->
+        <ellipse cx="96" cy="50" rx="10" ry="14" fill="rgba(0,180,255,0.25)" transform="rotate(-15,96,50)"/>
+        <!-- Body -->
+        <rect x="64" y="116" width="92" height="95" rx="22" fill="#e4e8ed" stroke="#c0c8d4" stroke-width="2"/>
+        <!-- Chest panel -->
+        <rect x="84" y="126" width="52" height="18" rx="4" fill="#0066ff" opacity="0.7"/>
+        <rect x="90" y="130" width="12" height="4" rx="2" fill="#00d4ff"/>
+        <rect x="106" y="130" width="8" height="4" rx="2" fill="#00ff88" opacity="0.8"/>
+        <circle cx="120" cy="132" r="3" fill="#ff4466" opacity="0.8"/>
+        <!-- Backpack -->
+        <rect x="48" y="122" width="18" height="65" rx="6" fill="#cdd4de" stroke="#b0b8c4" stroke-width="1.5"/>
+        <rect x="52" y="132" width="10" height="8" rx="2" fill="#0066ff" opacity="0.4"/>
+        <!-- Left arm -->
+        <path d="M64 138 Q28 162 34 195" stroke="#e4e8ed" stroke-width="18" stroke-linecap="round"/>
+        <circle cx="34" cy="200" r="11" fill="#cdd4de" stroke="#b0b8c4" stroke-width="1.5"/>
+        <!-- Right arm -->
+        <path d="M156 138 Q192 162 186 195" stroke="#e4e8ed" stroke-width="18" stroke-linecap="round"/>
+        <circle cx="186" cy="200" r="11" fill="#cdd4de" stroke="#b0b8c4" stroke-width="1.5"/>
+        <!-- Left leg -->
+        <path d="M88 206 Q78 252 72 282" stroke="#e4e8ed" stroke-width="20" stroke-linecap="round"/>
+        <ellipse cx="72" cy="290" rx="16" ry="9" fill="#cdd4de" stroke="#b0b8c4" stroke-width="1.5"/>
+        <!-- Right leg -->
+        <path d="M132 206 Q142 252 148 282" stroke="#e4e8ed" stroke-width="20" stroke-linecap="round"/>
+        <ellipse cx="148" cy="290" rx="16" ry="9" fill="#cdd4de" stroke="#b0b8c4" stroke-width="1.5"/>
+        <!-- Tether line -->
+        <path d="M48 155 Q10 180 -10 220 Q-20 260 0 300" stroke="rgba(0,180,255,0.3)" stroke-width="1.5" fill="none" stroke-dasharray="6 4"/>
+        <defs>
+          <radialGradient id="visorGrad" cx="0.4" cy="0.3">
+            <stop offset="0%" stop-color="#00aaff" stop-opacity="0.4"/>
+            <stop offset="100%" stop-color="#0022aa" stop-opacity="0.2"/>
+          </radialGradient>
+        </defs>
+      </svg>
+    </div>
+
+    <!-- Water Sphere with Logo -->
     <div class="hero-content">
+      <div class="water-sphere-wrapper" id="waterSphere">
+        <div class="sphere-glow"></div>
+        <div class="water-sphere">
+          <div class="sphere-reflection"></div>
+          <div class="sphere-caustics"></div>
+          <img src="assets/img/logo.png" alt="Nour//Dev Logo" class="sphere-logo" />
+          <div class="sphere-highlight"></div>
+        </div>
+        <div class="sphere-shadow"></div>
+      </div>
+
       <p class="hero-greeting reveal">Hello, I'm</p>
-      <h1 class="hero-name reveal">John Developer</h1>
+      <h1 class="hero-name reveal">Nour</h1>
       <div class="hero-typing">
         <span class="typing-prefix">I'm a&nbsp;</span>
         <span class="typing-text" id="typingText"></span>
@@ -108,9 +165,7 @@
       <div class="about-grid">
         <div class="about-image reveal">
           <div class="image-wrapper">
-            <div class="image-placeholder">
-              <i class="fas fa-user"></i>
-            </div>
+            <img src="assets/img/me.png" alt="Nour" class="profile-photo" />
             <div class="image-border"></div>
           </div>
         </div>
@@ -512,8 +567,8 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
-        <a href="#home" class="footer-logo">&lt;Dev /&gt;</a>
-        <p>&copy; 2025 Dev Portfolio. All rights reserved.</p>
+        <a href="#home" class="footer-logo">Nour//Dev</a>
+        <p>&copy; 2025 Nour//Dev. All rights reserved.</p>
         <div class="footer-socials">
           <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
           <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>

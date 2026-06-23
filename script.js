@@ -17,8 +17,10 @@
   const themeToggle = $('#themeToggle');
   const scrollTopBtn = $('#scrollTop');
   const typingTextEl = $('#typingText');
-  const particleCanvas = $('#particleCanvas');
+  const starCanvas = $('#starCanvas');
   const contactForm = $('#contactForm');
+  const waterSphere = $('#waterSphere');
+  const astronaut = $('#astronaut');
 
   /* ----------------------------------------------------------
      THEME TOGGLE (dark / light)
@@ -56,6 +58,16 @@
     $$('.nav-link').forEach((link) => {
       link.classList.toggle('active', link.dataset.section === currentSection);
     });
+
+    // Parallax: astronaut and sphere respond to scroll
+    if (astronaut) {
+      const offset = scrollY * 0.3;
+      astronaut.style.transform = `translateY(${offset}px)`;
+    }
+    if (waterSphere) {
+      const offset = scrollY * 0.15;
+      waterSphere.style.transform = `translateY(${offset}px)`;
+    }
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -123,80 +135,142 @@
   typeEffect();
 
   /* ----------------------------------------------------------
-     PARTICLE BACKGROUND (hero)
+     STAR FIELD BACKGROUND (universe hero)
      ---------------------------------------------------------- */
-  const ctx = particleCanvas.getContext('2d');
-  let particles = [];
-  const PARTICLE_COUNT = 80;
-  const CONNECT_DISTANCE = 120;
+  const ctx = starCanvas.getContext('2d');
+  let stars = [];
+  let shootingStars = [];
+  const STAR_COUNT = 300;
 
   function resizeCanvas() {
-    particleCanvas.width = particleCanvas.parentElement.offsetWidth;
-    particleCanvas.height = particleCanvas.parentElement.offsetHeight;
+    starCanvas.width = starCanvas.parentElement.offsetWidth;
+    starCanvas.height = starCanvas.parentElement.offsetHeight;
   }
 
-  function createParticles() {
-    particles = [];
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-      particles.push({
-        x: Math.random() * particleCanvas.width,
-        y: Math.random() * particleCanvas.height,
-        vx: (Math.random() - 0.5) * 0.6,
-        vy: (Math.random() - 0.5) * 0.6,
-        radius: Math.random() * 2 + 0.5,
+  function createStars() {
+    stars = [];
+    for (let i = 0; i < STAR_COUNT; i++) {
+      stars.push({
+        x: Math.random() * starCanvas.width,
+        y: Math.random() * starCanvas.height,
+        radius: Math.random() * 1.5 + 0.3,
+        opacity: Math.random() * 0.8 + 0.2,
+        twinkleSpeed: Math.random() * 0.02 + 0.005,
+        twinklePhase: Math.random() * Math.PI * 2,
       });
     }
   }
 
-  function drawParticles() {
-    ctx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+  function createShootingStar() {
+    if (Math.random() > 0.995 && shootingStars.length < 2) {
+      shootingStars.push({
+        x: Math.random() * starCanvas.width * 0.7,
+        y: Math.random() * starCanvas.height * 0.4,
+        length: Math.random() * 80 + 40,
+        speed: Math.random() * 6 + 4,
+        angle: (Math.PI / 6) + Math.random() * (Math.PI / 6),
+        opacity: 1,
+        life: 0,
+      });
+    }
+  }
 
-    const theme = document.documentElement.getAttribute('data-theme');
-    const particleColor = theme === 'light' ? '0, 85, 221' : '0, 102, 255';
-    const lineColor = theme === 'light' ? '0, 85, 221' : '0, 102, 255';
+  let animFrame = 0;
 
-    particles.forEach((p, i) => {
-      // Move
-      p.x += p.vx;
-      p.y += p.vy;
+  function drawStars() {
+    ctx.clearRect(0, 0, starCanvas.width, starCanvas.height);
+    animFrame++;
 
-      // Bounce off edges
-      if (p.x < 0 || p.x > particleCanvas.width) p.vx *= -1;
-      if (p.y < 0 || p.y > particleCanvas.height) p.vy *= -1;
+    // Draw stars
+    stars.forEach((star) => {
+      const twinkle = Math.sin(animFrame * star.twinkleSpeed + star.twinklePhase);
+      const opacity = star.opacity * (0.6 + 0.4 * twinkle);
 
-      // Draw dot
       ctx.beginPath();
-      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(' + particleColor + ', 0.5)';
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
       ctx.fill();
 
-      // Connect nearby particles
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = p.x - particles[j].x;
-        const dy = p.y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < CONNECT_DISTANCE) {
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle =
-            'rgba(' + lineColor + ',' + (1 - dist / CONNECT_DISTANCE) * 0.15 + ')';
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
-        }
+      // Add subtle blue glow to larger stars
+      if (star.radius > 1) {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius * 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(100, 180, 255, ${opacity * 0.15})`;
+        ctx.fill();
       }
     });
 
-    requestAnimationFrame(drawParticles);
+    // Shooting stars
+    createShootingStar();
+    shootingStars = shootingStars.filter((ss) => {
+      ss.x += Math.cos(ss.angle) * ss.speed;
+      ss.y += Math.sin(ss.angle) * ss.speed;
+      ss.life++;
+      ss.opacity = Math.max(0, 1 - ss.life / 30);
+
+      if (ss.opacity <= 0) return false;
+
+      const tailX = ss.x - Math.cos(ss.angle) * ss.length;
+      const tailY = ss.y - Math.sin(ss.angle) * ss.length;
+
+      const gradient = ctx.createLinearGradient(tailX, tailY, ss.x, ss.y);
+      gradient.addColorStop(0, `rgba(255, 255, 255, 0)`);
+      gradient.addColorStop(1, `rgba(255, 255, 255, ${ss.opacity})`);
+
+      ctx.beginPath();
+      ctx.moveTo(tailX, tailY);
+      ctx.lineTo(ss.x, ss.y);
+      ctx.strokeStyle = gradient;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      return true;
+    });
+
+    requestAnimationFrame(drawStars);
   }
 
   resizeCanvas();
-  createParticles();
-  drawParticles();
+  createStars();
+  drawStars();
   window.addEventListener('resize', () => {
     resizeCanvas();
-    createParticles();
+    createStars();
   });
+
+  /* ----------------------------------------------------------
+     WATER SPHERE — Mouse interaction
+     ---------------------------------------------------------- */
+  if (waterSphere) {
+    const sphereEl = waterSphere.querySelector('.water-sphere');
+
+    waterSphere.addEventListener('mousemove', (e) => {
+      const rect = waterSphere.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+      if (sphereEl) {
+        sphereEl.style.transform = `rotateY(${x * 15}deg) rotateX(${-y * 15}deg)`;
+      }
+    });
+
+    waterSphere.addEventListener('mouseleave', () => {
+      if (sphereEl) {
+        sphereEl.style.transform = '';
+      }
+    });
+
+    // Touch interaction for mobile
+    waterSphere.addEventListener('touchstart', () => {
+      waterSphere.style.animationPlayState = 'paused';
+      waterSphere.style.transform = 'scale(1.08)';
+    });
+
+    waterSphere.addEventListener('touchend', () => {
+      waterSphere.style.animationPlayState = 'running';
+      waterSphere.style.transform = '';
+    });
+  }
 
   /* ----------------------------------------------------------
      SCROLL REVEAL
