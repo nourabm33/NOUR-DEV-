@@ -19,8 +19,6 @@
   const typingTextEl = $('#typingText');
   const starCanvas = $('#starCanvas');
   const contactForm = $('#contactForm');
-  const waterSphere = $('#waterSphere');
-  const astronaut = $('#astronaut');
 
   /* ----------------------------------------------------------
      THEME TOGGLE (dark / light)
@@ -59,15 +57,7 @@
       link.classList.toggle('active', link.dataset.section === currentSection);
     });
 
-    // Parallax: astronaut and sphere respond to scroll
-    if (astronaut) {
-      const offset = scrollY * 0.3;
-      astronaut.style.transform = `translateY(${offset}px)`;
-    }
-    if (waterSphere) {
-      const offset = scrollY * 0.15;
-      waterSphere.style.transform = `translateY(${offset}px)`;
-    }
+
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -140,7 +130,7 @@
   const ctx = starCanvas.getContext('2d');
   let stars = [];
   let shootingStars = [];
-  const STAR_COUNT = 300;
+  const STAR_COUNT = 150;
 
   function resizeCanvas() {
     starCanvas.width = starCanvas.parentElement.offsetWidth;
@@ -237,40 +227,6 @@
     resizeCanvas();
     createStars();
   });
-
-  /* ----------------------------------------------------------
-     WATER SPHERE — Mouse interaction
-     ---------------------------------------------------------- */
-  if (waterSphere) {
-    const sphereEl = waterSphere.querySelector('.water-sphere');
-
-    waterSphere.addEventListener('mousemove', (e) => {
-      const rect = waterSphere.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-
-      if (sphereEl) {
-        sphereEl.style.transform = `rotateY(${x * 15}deg) rotateX(${-y * 15}deg)`;
-      }
-    });
-
-    waterSphere.addEventListener('mouseleave', () => {
-      if (sphereEl) {
-        sphereEl.style.transform = '';
-      }
-    });
-
-    // Touch interaction for mobile
-    waterSphere.addEventListener('touchstart', () => {
-      waterSphere.style.animationPlayState = 'paused';
-      waterSphere.style.transform = 'scale(1.08)';
-    });
-
-    waterSphere.addEventListener('touchend', () => {
-      waterSphere.style.animationPlayState = 'running';
-      waterSphere.style.transform = '';
-    });
-  }
 
   /* ----------------------------------------------------------
      SCROLL REVEAL
