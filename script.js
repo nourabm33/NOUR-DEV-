@@ -17,7 +17,6 @@
   const themeToggle = $('#themeToggle');
   const scrollTopBtn = $('#scrollTop');
   const typingTextEl = $('#typingText');
-  const starCanvas = $('#starCanvas');
   const contactForm = $('#contactForm');
 
   /* ----------------------------------------------------------
@@ -123,110 +122,6 @@
   }
 
   typeEffect();
-
-  /* ----------------------------------------------------------
-     STAR FIELD BACKGROUND (universe hero)
-     ---------------------------------------------------------- */
-  const ctx = starCanvas.getContext('2d');
-  let stars = [];
-  let shootingStars = [];
-  const STAR_COUNT = 150;
-
-  function resizeCanvas() {
-    starCanvas.width = starCanvas.parentElement.offsetWidth;
-    starCanvas.height = starCanvas.parentElement.offsetHeight;
-  }
-
-  function createStars() {
-    stars = [];
-    for (let i = 0; i < STAR_COUNT; i++) {
-      stars.push({
-        x: Math.random() * starCanvas.width,
-        y: Math.random() * starCanvas.height,
-        radius: Math.random() * 1.5 + 0.3,
-        opacity: Math.random() * 0.8 + 0.2,
-        twinkleSpeed: Math.random() * 0.02 + 0.005,
-        twinklePhase: Math.random() * Math.PI * 2,
-      });
-    }
-  }
-
-  function createShootingStar() {
-    if (Math.random() > 0.995 && shootingStars.length < 2) {
-      shootingStars.push({
-        x: Math.random() * starCanvas.width * 0.7,
-        y: Math.random() * starCanvas.height * 0.4,
-        length: Math.random() * 80 + 40,
-        speed: Math.random() * 6 + 4,
-        angle: (Math.PI / 6) + Math.random() * (Math.PI / 6),
-        opacity: 1,
-        life: 0,
-      });
-    }
-  }
-
-  let animFrame = 0;
-
-  function drawStars() {
-    ctx.clearRect(0, 0, starCanvas.width, starCanvas.height);
-    animFrame++;
-
-    // Draw stars
-    stars.forEach((star) => {
-      const twinkle = Math.sin(animFrame * star.twinkleSpeed + star.twinklePhase);
-      const opacity = star.opacity * (0.6 + 0.4 * twinkle);
-
-      ctx.beginPath();
-      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
-      ctx.fill();
-
-      // Add subtle blue glow to larger stars
-      if (star.radius > 1) {
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.radius * 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(100, 180, 255, ${opacity * 0.15})`;
-        ctx.fill();
-      }
-    });
-
-    // Shooting stars
-    createShootingStar();
-    shootingStars = shootingStars.filter((ss) => {
-      ss.x += Math.cos(ss.angle) * ss.speed;
-      ss.y += Math.sin(ss.angle) * ss.speed;
-      ss.life++;
-      ss.opacity = Math.max(0, 1 - ss.life / 30);
-
-      if (ss.opacity <= 0) return false;
-
-      const tailX = ss.x - Math.cos(ss.angle) * ss.length;
-      const tailY = ss.y - Math.sin(ss.angle) * ss.length;
-
-      const gradient = ctx.createLinearGradient(tailX, tailY, ss.x, ss.y);
-      gradient.addColorStop(0, `rgba(255, 255, 255, 0)`);
-      gradient.addColorStop(1, `rgba(255, 255, 255, ${ss.opacity})`);
-
-      ctx.beginPath();
-      ctx.moveTo(tailX, tailY);
-      ctx.lineTo(ss.x, ss.y);
-      ctx.strokeStyle = gradient;
-      ctx.lineWidth = 1.5;
-      ctx.stroke();
-
-      return true;
-    });
-
-    requestAnimationFrame(drawStars);
-  }
-
-  resizeCanvas();
-  createStars();
-  drawStars();
-  window.addEventListener('resize', () => {
-    resizeCanvas();
-    createStars();
-  });
 
   /* ----------------------------------------------------------
      SCROLL REVEAL
