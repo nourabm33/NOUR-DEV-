@@ -142,34 +142,34 @@
   revealElements.forEach((el) => revealObserver.observe(el));
 
   /* ----------------------------------------------------------
-     COUNTER ANIMATION (hero stats)
+     COUNTER ANIMATION (for any stat-number elements)
      ---------------------------------------------------------- */
   const counters = $$('.stat-number');
-
-  const counterObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          const target = parseInt(el.dataset.count, 10);
-          let count = 0;
-          const step = Math.max(1, Math.floor(target / 40));
-          const interval = setInterval(() => {
-            count += step;
-            if (count >= target) {
-              count = target;
-              clearInterval(interval);
-            }
-            el.textContent = count;
-          }, 40);
-          counterObserver.unobserve(el);
-        }
-      });
-    },
-    { threshold: 0.5 }
-  );
-
-  counters.forEach((c) => counterObserver.observe(c));
+  if (counters.length) {
+    const counterObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const target = parseInt(el.dataset.count, 10);
+            let count = 0;
+            const step = Math.max(1, Math.floor(target / 40));
+            const interval = setInterval(() => {
+              count += step;
+              if (count >= target) {
+                count = target;
+                clearInterval(interval);
+              }
+              el.textContent = count;
+            }, 40);
+            counterObserver.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    counters.forEach((c) => counterObserver.observe(c));
+  }
 
   /* ----------------------------------------------------------
      PROJECT FILTERS
