@@ -142,6 +142,80 @@
   revealElements.forEach((el) => revealObserver.observe(el));
 
   /* ----------------------------------------------------------
+     HERO 3D PARALLAX — cursor-reactive card tilt
+     ---------------------------------------------------------- */
+  const heroScene = $('#hero3dScene');
+  const heroCard = $('#heroCard3d');
+
+  if (heroScene && heroCard) {
+    const MAX_TILT = 8;
+    let targetRotateX = 0;
+    let targetRotateY = 0;
+    let currentRotateX = 0;
+    let currentRotateY = 0;
+    let rafId = null;
+    let isHovering = false;
+
+    function lerp(a, b, t) {
+      return a + (b - a) * t;
+    }
+
+    function animateCard() {
+      const ease = isHovering ? 0.08 : 0.04;
+      currentRotateX = lerp(currentRotateX, targetRotateX, ease);
+      currentRotateY = lerp(currentRotateY, targetRotateY, ease);
+
+      if (Math.abs(currentRotateX - targetRotateX) > 0.01 ||
+          Math.abs(currentRotateY - targetRotateY) > 0.01) {
+        heroCard.style.transform =
+          'translateY(' + (isHovering ? '-4px' : '0') + ') ' +
+          'rotateX(' + currentRotateX + 'deg) ' +
+          'rotateY(' + currentRotateY + 'deg)';
+        heroCard.style.animationPlayState = 'paused';
+      } else if (!isHovering) {
+        heroCard.style.transform = '';
+        heroCard.style.animationPlayState = '';
+      }
+
+      rafId = requestAnimationFrame(animateCard);
+    }
+
+    heroScene.addEventListener('mousemove', function (e) {
+      const rect = heroScene.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
+      targetRotateY = (x - 0.5) * MAX_TILT * 2;
+      targetRotateX = (0.5 - y) * MAX_TILT * 2;
+      isHovering = true;
+    });
+
+    heroScene.addEventListener('mouseleave', function () {
+      targetRotateX = 0;
+      targetRotateY = 0;
+      isHovering = false;
+    });
+
+    /* Touch parallax for mobile */
+    heroScene.addEventListener('touchmove', function (e) {
+      const touch = e.touches[0];
+      const rect = heroScene.getBoundingClientRect();
+      const x = (touch.clientX - rect.left) / rect.width;
+      const y = (touch.clientY - rect.top) / rect.height;
+      targetRotateY = (x - 0.5) * MAX_TILT;
+      targetRotateX = (0.5 - y) * MAX_TILT;
+      isHovering = true;
+    }, { passive: true });
+
+    heroScene.addEventListener('touchend', function () {
+      targetRotateX = 0;
+      targetRotateY = 0;
+      isHovering = false;
+    });
+
+    rafId = requestAnimationFrame(animateCard);
+  }
+
+  /* ----------------------------------------------------------
      COUNTER ANIMATION (for any stat-number elements)
      ---------------------------------------------------------- */
   const counters = $$('.stat-number');
