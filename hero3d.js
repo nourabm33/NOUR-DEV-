@@ -74,7 +74,7 @@
     tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
 
     var aspect = tex.image.width / tex.image.height;
-    var planeH = 1.8;
+    var planeH = 2.4;
     var planeW = planeH * aspect;
 
     var geo = new THREE.PlaneGeometry(planeW, planeH);
@@ -83,12 +83,14 @@
       transparent: true,
       roughness: 0.3,
       metalness: 0.1,
+      emissive: new THREE.Color(0x1a3a6a),
+      emissiveIntensity: 0.25,
       side: THREE.FrontSide,
       depthWrite: true
     });
 
     logoMesh = new THREE.Mesh(geo, mat);
-    logoMesh.position.set(0, 0.45, 0.3);
+    logoMesh.position.set(0, 0.2, -1.2);
     logoMesh.castShadow = true;
     logoMesh.receiveShadow = true;
     sceneGroup.add(logoMesh);
@@ -187,7 +189,7 @@
     ];
 
     var mesh = new THREE.Mesh(geo, materials);
-    mesh.position.set(0, -0.8, 0.15);
+    mesh.position.set(0, -0.65, 0.8);
     mesh.castShadow = true;
     mesh.receiveShadow = true;
 
@@ -296,12 +298,12 @@
 
     floatPhase = elapsed;
     if (logoMesh) {
-      logoMesh.position.y = 0.45 + Math.sin(floatPhase * 0.8) * 0.06;
-      logoMesh.position.z = 0.3 + Math.sin(floatPhase * 0.6) * 0.05;
+      logoMesh.position.y = 0.2 + Math.sin(floatPhase * 0.8) * 0.06;
+      logoMesh.position.z = -1.2 + Math.sin(floatPhase * 0.6) * 0.05;
     }
 
-    textMesh.position.y = -0.8 + Math.sin(floatPhase * 0.8 + 0.5) * 0.03;
-    textMesh.position.z = 0.15 + Math.sin(floatPhase * 0.6 + 0.5) * 0.03;
+    textMesh.position.y = -0.65 + Math.sin(floatPhase * 0.8 + 0.5) * 0.03;
+    textMesh.position.z = 0.8 + Math.sin(floatPhase * 0.6 + 0.5) * 0.03;
 
     var posArr = particles.geometry.attributes.position.array;
     for (var i = 0; i < particleCount; i++) {
