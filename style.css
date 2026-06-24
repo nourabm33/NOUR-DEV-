@@ -609,8 +609,9 @@ ul {
 .hero-card-logo {
   position: relative;
   z-index: 1;
-  width: 160px;
-  height: 160px;
+  width: 78%;
+  max-width: 300px;
+  height: auto;
   object-fit: contain;
   margin: 0 auto 20px;
   filter: drop-shadow(0 4px 12px rgba(0, 102, 255, 0.15));
@@ -1639,8 +1640,8 @@ ul {
   }
 
   .hero-card-logo {
-    width: 120px;
-    height: 120px;
+    width: 75%;
+    max-width: 220px;
   }
 
   /* Section padding */
