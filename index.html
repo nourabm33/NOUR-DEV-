@@ -1,24 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nour//Dev — Web Developer &amp; UI/UX Enthusiast</title>
-  <meta name="description" content="Professional web developer portfolio by Nour — modern, responsive websites and full-stack applications. Available for freelance projects." />
-  <meta name="keywords" content="web developer, portfolio, frontend, full stack, React, Node.js, freelance, Nour" />
+  <title>Nour//Dev — Where Your Vision Becomes Reality</title>
+  <meta name="description" content="Cinematic space-travel inspired portfolio by Nour — pioneering web experiences that venture past the ordinary." />
   <meta name="author" content="Nour//Dev" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Nour//Dev — Web Developer & UI/UX Enthusiast" />
-  <meta property="og:description" content="Professional web developer portfolio by Nour — modern, responsive websites and full-stack applications." />
+  <meta property="og:title" content="Nour//Dev — Where Your Vision Becomes Reality" />
+  <meta property="og:description" content="Cinematic space-travel inspired portfolio — pioneering web experiences." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/img/og-preview.png" />
-  <meta property="og:url" content="" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Nour//Dev — Web Developer & UI/UX Enthusiast" />
-  <meta name="twitter:description" content="Professional web developer portfolio by Nour — modern, responsive websites and full-stack applications." />
 
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#60;/&#62;</text></svg>" />
@@ -26,420 +18,495 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ["'Instrument Serif'", "serif"],
+            body: ["'Barlow'", "sans-serif"],
+          },
+          borderRadius: {
+            DEFAULT: "9999px",
+          },
+        },
+      },
+    };
+  </script>
 
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Barlow', sans-serif; background: #000; color: #fff; overflow-x: hidden; }
 
+    /* Liquid-glass */
+    .liquid-glass {
+      background: rgba(255,255,255,0.01);
+      background-blend-mode: luminosity;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: none;
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    .liquid-glass::before {
+      content: "";
+      position: absolute; inset: 0;
+      border-radius: inherit;
+      padding: 1.4px;
+      background: linear-gradient(180deg,
+        rgba(255,255,255,0.45) 0%,
+        rgba(255,255,255,0.15) 20%,
+        rgba(255,255,255,0) 40%,
+        rgba(255,255,255,0) 60%,
+        rgba(255,255,255,0.15) 80%,
+        rgba(255,255,255,0.45) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .liquid-glass-strong {
+      background: rgba(255,255,255,0.01);
+      background-blend-mode: luminosity;
+      backdrop-filter: blur(50px);
+      -webkit-backdrop-filter: blur(50px);
+      border: none;
+      box-shadow: 4px 4px 4px rgba(0,0,0,0.05), inset 0 1px 1px rgba(255,255,255,0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    .liquid-glass-strong::before {
+      content: "";
+      position: absolute; inset: 0;
+      border-radius: inherit;
+      padding: 1.4px;
+      background: linear-gradient(180deg,
+        rgba(255,255,255,0.5) 0%,
+        rgba(255,255,255,0.2) 20%,
+        rgba(255,255,255,0) 40%,
+        rgba(255,255,255,0) 60%,
+        rgba(255,255,255,0.2) 80%,
+        rgba(255,255,255,0.5) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    /* Fade-in animation */
+    .fade-in {
+      opacity: 0;
+      filter: blur(10px);
+      transform: translateY(20px);
+      transition: opacity 0.8s ease-out, filter 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      filter: blur(0px);
+      transform: translateY(0);
+    }
+
+    /* Blur-text word animation */
+    .blur-word {
+      display: inline-block;
+      opacity: 0;
+      filter: blur(10px);
+      transform: translateY(50px);
+      transition: opacity 0.7s ease-out, filter 0.7s ease-out, transform 0.7s ease-out;
+      margin-right: 0.28em;
+    }
+    .blur-word.visible {
+      opacity: 1;
+      filter: blur(0px);
+      transform: translateY(0);
+    }
+
+    /* Hide scrollbar */
+    ::-webkit-scrollbar { width: 0; background: transparent; }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 64px;
+      left: 16px;
+      right: 16px;
+      z-index: 60;
+    }
+    .mobile-menu.open { display: flex; }
+
+    @media (max-width: 767px) {
+      .desktop-nav { display: none !important; }
+      .mobile-toggle { display: flex !important; }
+    }
+    @media (min-width: 768px) {
+      .mobile-toggle { display: none !important; }
+      .mobile-menu { display: none !important; }
+    }
+  </style>
 </head>
-<body>
+<body class="bg-black">
 
-  <!-- ========== NAVBAR ========== -->
-  <nav class="navbar" id="navbar">
-    <div class="nav-container">
-      <a href="#home" class="nav-logo"><span class="nav-logo-text">N<span class="nav-logo-accent">.</span></span></a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
-        <li><a href="#about" class="nav-link" data-section="about">About</a></li>
-        <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
-        <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
-        <li><a href="#pricing" class="nav-link" data-section="pricing">Pricing</a></li>
-        <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
-      </ul>
-      <div class="nav-actions">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
-          <i class="fas fa-moon"></i>
-          <i class="fas fa-sun"></i>
-        </button>
-        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <!-- ========== HERO ========== -->
-  <section class="hero" id="home">
-    <video class="hero-video" autoplay muted loop playsinline>
-      <source src="assets/video/hero-bg.mp4" type="video/mp4" />
+  <!-- ========== SECTION 1: HERO ========== -->
+  <section class="relative min-h-screen flex flex-col bg-black overflow-hidden" id="hero">
+    <!-- Background video -->
+    <video
+      class="hero-video absolute left-1/2 top-0 -translate-x-1/2 object-cover object-top z-0"
+      style="width: 120%; height: 120%; opacity: 0;"
+      autoplay muted playsinline preload="auto"
+      data-fading-video
+    >
+      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_080021_d598092b-c4c2-4e53-8e46-94cf9064cd50.mp4" type="video/mp4" />
     </video>
-    <div class="hero-overlay"></div>
 
-    <div class="hero-slogan">
-      <span class="slogan-text" id="sloganText"></span>
-      <span class="slogan-cursor"></span>
-    </div>
+    <!-- z-10 layer -->
+    <div class="relative z-10 flex flex-col min-h-screen">
 
-    <div class="hero-scroll">
-      <a href="#about" aria-label="Scroll down"><i class="fas fa-chevron-down"></i></a>
-    </div>
-  </section>
-
-  <!-- ========== ABOUT ========== -->
-  <section class="section" id="about">
-    <div class="container">
-      <h2 class="section-title reveal">About Me</h2>
-      <p class="section-subtitle reveal">Get to know the person behind the code</p>
-      <div class="about-grid">
-        <div class="about-image reveal">
-          <div class="about-photo-frame">
-            <div class="photo-glow"></div>
-            <div class="photo-container">
-              <img src="assets/img/me.png" alt="Nour" class="profile-photo" />
-            </div>
-            <div class="photo-ring"></div>
-            <div class="photo-accent-line photo-accent-top"></div>
-            <div class="photo-accent-line photo-accent-bottom"></div>
-          </div>
-        </div>
-        <div class="about-content">
-          <p class="about-text reveal">
-            Some people see websites as pages on a screen. I see them as experiences.
-          </p>
-          <p class="about-text reveal">
-            For the past two years, I've been immersed in the art of web development &mdash; exploring, learning, and building digital spaces where creativity meets functionality. Every line of code, every animation, and every interaction is crafted with a single goal: creating something people remember.
-          </p>
-          <p class="about-text reveal">
-            My foundation in Mechatronics Engineering gave me the discipline to solve problems and think beyond the obvious. Combined with an obsession for design and technology, it allows me to transform ideas into modern, engaging, and impactful web experiences.
-          </p>
-          <p class="about-text about-text-highlight reveal">
-            This is only the beginning of my journey &mdash; and I'm just getting started.
-          </p>
-          <div class="about-info reveal">
-            <div class="info-item">
-              <i class="fas fa-map-marker-alt"></i>
-              <div>
-                <span class="info-label">Location</span>
-                <span class="info-value">Italy</span>
-              </div>
-            </div>
-            <div class="info-item">
-              <i class="fas fa-briefcase"></i>
-              <div>
-                <span class="info-label">Experience</span>
-                <span class="info-value">2 Years</span>
-              </div>
-            </div>
-            <div class="info-item">
-              <i class="fas fa-check-circle"></i>
-              <div>
-                <span class="info-label">Availability</span>
-                <span class="info-value">Open for Projects</span>
-              </div>
-            </div>
-          </div>
-          <a href="#" class="btn btn-primary reveal" download>
-            <i class="fas fa-download"></i> Download CV
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== SKILLS ========== -->
-  <section class="section section-alt" id="skills">
-    <div class="container">
-      <h2 class="section-title reveal">My Skills</h2>
-      <p class="section-subtitle reveal">Technologies & tools I work with</p>
-      <div class="skills-grid">
-        <!-- Frontend -->
-        <div class="skill-category reveal">
-          <div class="category-header">
-            <i class="fas fa-laptop-code"></i>
-            <h3>Frontend</h3>
-          </div>
-          <div class="skill-cards">
-            <div class="skill-card">
-              <i class="fab fa-html5"></i>
-              <span>HTML5</span>
-            </div>
-            <div class="skill-card">
-              <i class="fab fa-css3-alt"></i>
-              <span>CSS3</span>
-            </div>
-            <div class="skill-card">
-              <i class="fab fa-js-square"></i>
-              <span>JavaScript</span>
-            </div>
-            <div class="skill-card">
-              <i class="fab fa-react"></i>
-              <span>React</span>
-            </div>
-          </div>
-        </div>
-        <!-- Backend -->
-        <div class="skill-category reveal">
-          <div class="category-header">
-            <i class="fas fa-server"></i>
-            <h3>Backend</h3>
-          </div>
-          <div class="skill-cards">
-            <div class="skill-card">
-              <i class="fab fa-node-js"></i>
-              <span>Node.js</span>
-            </div>
-            <div class="skill-card">
-              <i class="fas fa-database"></i>
-              <span>MongoDB</span>
-            </div>
-          </div>
-        </div>
-        <!-- Tools -->
-        <div class="skill-category reveal">
-          <div class="category-header">
-            <i class="fas fa-tools"></i>
-            <h3>Tools</h3>
-          </div>
-          <div class="skill-cards">
-            <div class="skill-card">
-              <i class="fab fa-git-alt"></i>
-              <span>Git</span>
-            </div>
-            <div class="skill-card">
-              <i class="fab fa-github"></i>
-              <span>GitHub</span>
-            </div>
-            <div class="skill-card">
-              <i class="fab fa-figma"></i>
-              <span>Figma</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== PROJECTS ========== -->
-  <section class="section" id="projects">
-    <div class="container">
-      <h2 class="section-title reveal">My Projects</h2>
-      <p class="section-subtitle reveal">A selection of my recent work</p>
-
-      <!-- Filters -->
-      <div class="project-filters reveal">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="business">Business</button>
-        <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
-      </div>
-
-      <!-- Project Grid -->
-      <div class="projects-grid">
-
-        <div class="project-card reveal" data-category="business">
-          <div class="project-image">
-            <img src="assets/img/project-mplus.png" alt="m+ more than Marche" class="project-thumb" />
-            <div class="project-overlay">
-              <a href="#" class="btn btn-sm" target="_blank"><i class="fas fa-external-link-alt"></i> View Project</a>
-            </div>
-          </div>
-          <div class="project-info">
-            <h3>m+ more than Marche</h3>
-            <p>Cultural platform showcasing the rich heritage, events, and business ecosystem of the Marche region in Italy.</p>
-            <div class="project-tags">
-              <span>Web Design</span><span>Culture</span><span>Business</span>
-            </div>
-          </div>
+      <!-- NAVBAR -->
+      <nav class="fixed top-4 left-0 right-0 px-4 sm:px-8 lg:px-16 z-50 flex items-center justify-between">
+        <!-- Logo -->
+        <div class="liquid-glass w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
+          <span class="font-heading italic text-white text-xl">a</span>
         </div>
 
-        <div class="project-card reveal" data-category="business">
-          <div class="project-image">
-            <img src="assets/img/project-ilchiosco.png" alt="Il Chiosco" class="project-thumb" />
-            <div class="project-overlay">
-              <a href="#" class="btn btn-sm" target="_blank"><i class="fas fa-external-link-alt"></i> View Project</a>
-            </div>
-          </div>
-          <div class="project-info">
-            <h3>Il Chiosco</h3>
-            <p>Elegant restaurant &amp; bar website featuring an interactive digital menu, photo gallery, and seamless reservation experience.</p>
-            <div class="project-tags">
-              <span>Restaurant</span><span>Menu</span><span>Gallery</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card reveal" data-category="ecommerce">
-          <div class="project-image">
-            <img src="assets/img/project-eshop.png" alt="Olfazeta E-Shop" class="project-thumb" />
-            <div class="project-overlay">
-              <a href="#" class="btn btn-sm" target="_blank"><i class="fas fa-external-link-alt"></i> View Project</a>
-            </div>
-          </div>
-          <div class="project-info">
-            <h3>Olfazeta E-Shop</h3>
-            <p>Premium e-commerce platform for a luxury perfume brand with product catalogue, cart, and secure checkout.</p>
-            <div class="project-tags">
-              <span>E-commerce</span><span>UI/UX</span><span>Catalogue</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== PRICING ========== -->
-  <section class="section section-alt" id="pricing">
-    <div class="container">
-      <h2 class="section-title reveal">Pricing Plans</h2>
-      <p class="section-subtitle reveal">Transparent pricing for every project size</p>
-
-      <div class="pricing-grid">
-
-        <!-- Starter -->
-        <div class="pricing-card reveal">
-          <div class="pricing-header">
-            <h3>Starter</h3>
-            <div class="pricing-price">&euro;299 &ndash; &euro;499</div>
-            <p class="pricing-desc">Perfect for personal sites &amp; landing pages</p>
-          </div>
-          <ul class="pricing-features">
-            <li><i class="fas fa-check"></i> 1&ndash;3 pages</li>
-            <li><i class="fas fa-check"></i> Responsive design</li>
-            <li><i class="fas fa-check"></i> Basic SEO</li>
-            <li><i class="fas fa-check"></i> Contact form</li>
-            <li><i class="fas fa-check"></i> GitHub Pages deploy</li>
-            <li><i class="fas fa-check"></i> 1 revision</li>
-            <li><i class="fas fa-check"></i> 7 days delivery</li>
-          </ul>
-          <a href="#contact" class="btn btn-outline btn-block">Get Started</a>
-        </div>
-
-        <!-- Business -->
-        <div class="pricing-card pricing-popular reveal">
-          <div class="popular-badge">Most Popular</div>
-          <div class="pricing-header">
-            <h3>Business</h3>
-            <div class="pricing-price">&euro;1200 &ndash; &euro;1800</div>
-            <p class="pricing-desc">For growing businesses &amp; brands</p>
-          </div>
-          <ul class="pricing-features">
-            <li><i class="fas fa-check"></i> Up to 6 pages</li>
-            <li><i class="fas fa-check"></i> Custom UI/UX design</li>
-            <li><i class="fas fa-check"></i> Advanced SEO</li>
-            <li><i class="fas fa-check"></i> Smooth animations</li>
-            <li><i class="fas fa-check"></i> Email integration</li>
-            <li><i class="fas fa-check"></i> Google Analytics</li>
-            <li><i class="fas fa-check"></i> GitHub repo</li>
-            <li><i class="fas fa-check"></i> 3 revisions</li>
-            <li><i class="fas fa-check"></i> 14 days delivery</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary btn-block">Get Started</a>
-        </div>
-
-        <!-- Enterprise -->
-        <div class="pricing-card reveal">
-          <div class="pricing-header">
-            <h3>Enterprise</h3>
-            <div class="pricing-price">&euro;2000 &ndash; &euro;2500</div>
-            <p class="pricing-desc">Full-scale web applications</p>
-          </div>
-          <ul class="pricing-features">
-            <li><i class="fas fa-check"></i> Full stack development</li>
-            <li><i class="fas fa-check"></i> Custom backend + database</li>
-            <li><i class="fas fa-check"></i> Authentication system</li>
-            <li><i class="fas fa-check"></i> Admin dashboard</li>
-            <li><i class="fas fa-check"></i> E-commerce (Stripe/PayPal)</li>
-            <li><i class="fas fa-check"></i> API integrations</li>
-            <li><i class="fas fa-check"></i> Unlimited pages</li>
-            <li><i class="fas fa-check"></i> 3 months support</li>
-            <li><i class="fas fa-check"></i> 30 days delivery</li>
-          </ul>
-          <a href="#contact" class="btn btn-outline btn-block">Get Started</a>
-        </div>
-
-      </div>
-
-      <!-- Add-ons -->
-      <div class="addons reveal">
-        <h3 class="addons-title">Add-ons</h3>
-        <div class="addons-grid">
-          <div class="addon-item"><span>Extra page</span><strong>&euro;49</strong></div>
-          <div class="addon-item"><span>Logo design</span><strong>&euro;149</strong></div>
-          <div class="addon-item"><span>Maintenance</span><strong>&euro;99/mo</strong></div>
-          <div class="addon-item"><span>SEO package</span><strong>&euro;249/mo</strong></div>
-          <div class="addon-item"><span>Speed optimization</span><strong>&euro;199</strong></div>
-          <div class="addon-item"><span>Extra revision</span><strong>&euro;59</strong></div>
-          <div class="addon-item"><span>Domain setup</span><strong>&euro;29</strong></div>
-          <div class="addon-item"><span>Hosting setup (1yr)</span><strong>&euro;99</strong></div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ========== CONTACT ========== -->
-  <section class="section" id="contact">
-    <div class="container">
-      <h2 class="section-title reveal">Get In Touch</h2>
-      <p class="section-subtitle reveal">Let's build something great together</p>
-
-      <div class="contact-grid">
-        <form class="contact-form reveal" id="contactForm">
-          <div class="form-group">
-            <input type="text" id="name" placeholder="Your Name" required />
-            <label for="name">Name</label>
-          </div>
-          <div class="form-group">
-            <input type="email" id="email" placeholder="Your Email" required />
-            <label for="email">Email</label>
-          </div>
-          <div class="form-group">
-            <input type="text" id="subject" placeholder="Subject" required />
-            <label for="subject">Subject</label>
-          </div>
-          <div class="form-group">
-            <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
-            <label for="message">Message</label>
-          </div>
-          <button type="submit" class="btn btn-primary btn-block btn-send">
-            <span class="btn-text">Send Message</span>
-            <span class="btn-sending">
-              <i class="fas fa-spinner fa-spin"></i> Sending...
-            </span>
-            <span class="btn-sent">
-              <i class="fas fa-check"></i> Sent!
-            </span>
+        <!-- Desktop nav -->
+        <div class="desktop-nav liquid-glass rounded-full px-1.5 py-1.5 flex items-center gap-0">
+          <a href="#hero" class="px-3 py-2 text-sm font-medium text-white/90 font-body hover:text-white transition-colors whitespace-nowrap">Home</a>
+          <a href="#" class="px-3 py-2 text-sm font-medium text-white/90 font-body hover:text-white transition-colors whitespace-nowrap">Voyages</a>
+          <a href="#" class="px-3 py-2 text-sm font-medium text-white/90 font-body hover:text-white transition-colors whitespace-nowrap">Worlds</a>
+          <a href="#" class="px-3 py-2 text-sm font-medium text-white/90 font-body hover:text-white transition-colors whitespace-nowrap">Innovation</a>
+          <a href="#capabilities" class="px-3 py-2 text-sm font-medium text-white/90 font-body hover:text-white transition-colors whitespace-nowrap">Plan Launch</a>
+          <button class="bg-white text-black rounded-full px-4 py-2 text-sm font-medium flex items-center gap-1 whitespace-nowrap ml-1">
+            Claim a Spot
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
           </button>
-        </form>
+        </div>
 
-        <div class="contact-info reveal">
-          <h3>Let's Connect</h3>
-          <p>Have a project in mind? Let's talk about how I can help bring your vision to life. Available for freelance work and collaborations.</p>
-          <div class="contact-links">
-            <a href="https://wa.me/393508808971" target="_blank" class="contact-link">
-              <i class="fab fa-whatsapp"></i>
-              <div>
-                <span class="link-label">WhatsApp Business</span>
-                <span class="link-value">+39 350 880 8971</span>
-              </div>
-            </a>
+        <!-- Mobile hamburger -->
+        <button class="mobile-toggle liquid-glass w-12 h-12 rounded-full flex-col items-center justify-center gap-1.5" id="mobileToggle" style="display: none;">
+          <span class="block w-5 h-0.5 bg-white transition-transform" id="hamLine1"></span>
+          <span class="block w-5 h-0.5 bg-white transition-opacity" id="hamLine2"></span>
+          <span class="block w-5 h-0.5 bg-white transition-transform" id="hamLine3"></span>
+        </button>
+
+        <!-- Spacer -->
+        <div class="w-12 h-12 hidden md:block"></div>
+
+        <!-- Mobile menu -->
+        <div class="mobile-menu liquid-glass-strong rounded-[1.25rem] p-6 flex-col gap-3" id="mobileMenu">
+          <a href="#hero" class="text-white/90 font-body text-base py-2">Home</a>
+          <a href="#" class="text-white/90 font-body text-base py-2">Voyages</a>
+          <a href="#" class="text-white/90 font-body text-base py-2">Worlds</a>
+          <a href="#" class="text-white/90 font-body text-base py-2">Innovation</a>
+          <a href="#capabilities" class="text-white/90 font-body text-base py-2">Plan Launch</a>
+          <button class="bg-white text-black rounded-full px-4 py-3 text-sm font-medium flex items-center justify-center gap-1 mt-2">
+            Claim a Spot
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </button>
+        </div>
+      </nav>
+
+      <!-- HERO CONTENT -->
+      <div class="flex-1 flex flex-col items-center justify-center pt-24 px-4 text-center">
+        <!-- Badge -->
+        <div class="fade-in" data-delay="400">
+          <div class="liquid-glass rounded-full inline-flex items-center gap-2 pr-3 mb-6">
+            <span class="bg-white text-black px-3 py-1 text-xs font-semibold rounded-full">New</span>
+            <span class="text-sm text-white/90 font-body">Maiden Crewed Voyage to Mars Arrives 2026</span>
+          </div>
+        </div>
+
+        <!-- Headline (blur-text) -->
+        <p class="blur-text-container text-4xl sm:text-5xl md:text-7xl lg:text-[5.5rem] font-heading italic text-white leading-[0.85] max-w-2xl tracking-[-3px] md:tracking-[-4px]" style="display: flex; flex-wrap: wrap; justify-content: center; row-gap: 0.1em;" data-blur-text>
+          Venture Past Our Sky Across the Universe
+        </p>
+
+        <!-- Subheading -->
+        <p class="fade-in mt-4 text-sm md:text-base text-white max-w-2xl font-body font-light leading-tight px-4" data-delay="800">
+          Discover the universe in ways once unimaginable. Our pioneering vessels and breakthrough engineering bring deep-space exploration within reach—secure and extraordinary.
+        </p>
+
+        <!-- CTAs -->
+        <div class="fade-in flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mt-6" data-delay="1100">
+          <button class="liquid-glass-strong rounded-full px-5 py-2.5 text-sm font-medium text-white flex items-center gap-2">
+            Start Your Voyage
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </button>
+          <button class="text-white/90 text-sm font-body font-medium flex items-center gap-2 hover:text-white transition-colors">
+            View Liftoff
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
+          </button>
+        </div>
+
+        <!-- Stats -->
+        <div class="fade-in flex flex-col sm:flex-row items-stretch gap-4 mt-8" data-delay="1300">
+          <div class="liquid-glass rounded-[1.25rem] p-5 w-[220px]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+            <p class="font-heading italic text-white text-4xl tracking-[-1px] leading-none mt-3">34.5 Min</p>
+            <p class="text-xs text-white font-body font-light mt-2">Average Videos Watch Time</p>
+          </div>
+          <div class="liquid-glass rounded-[1.25rem] p-5 w-[220px]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+            <p class="font-heading italic text-white text-4xl tracking-[-1px] leading-none mt-3">2.8B+</p>
+            <p class="text-xs text-white font-body font-light mt-2">Users Across the Globe</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PARTNERS -->
+      <div class="fade-in flex flex-col items-center gap-4 pb-8" data-delay="1400">
+        <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body">
+          Collaborating with top aerospace pioneers globally
+        </div>
+        <div class="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-12 lg:gap-16">
+          <span class="font-heading italic text-white text-xl sm:text-2xl md:text-3xl tracking-tight">Aeon</span>
+          <span class="font-heading italic text-white text-xl sm:text-2xl md:text-3xl tracking-tight">Vela</span>
+          <span class="font-heading italic text-white text-xl sm:text-2xl md:text-3xl tracking-tight">Apex</span>
+          <span class="font-heading italic text-white text-xl sm:text-2xl md:text-3xl tracking-tight">Orbit</span>
+          <span class="font-heading italic text-white text-xl sm:text-2xl md:text-3xl tracking-tight">Zeno</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 2: CAPABILITIES ========== -->
+  <section class="relative min-h-screen bg-black overflow-hidden" id="capabilities">
+    <!-- Background video -->
+    <video
+      class="absolute inset-0 w-full h-full object-cover z-0"
+      style="opacity: 0;"
+      autoplay muted playsinline preload="auto"
+      data-fading-video
+    >
+      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_094631_d30ab262-45ee-4b7d-99f3-5d5848c8ef13.mp4" type="video/mp4" />
+    </video>
+
+    <!-- Content -->
+    <div class="relative z-10 px-4 sm:px-8 md:px-16 lg:px-20 pt-24 pb-10 flex flex-col min-h-screen">
+      <!-- Header -->
+      <div class="mb-auto">
+        <p class="fade-in text-sm font-body text-white/80 mb-6">// Capabilities</p>
+        <h2 class="fade-in font-heading italic text-white text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] leading-[0.9] tracking-[-3px]" data-delay="200">
+          Production<br/>evolved
+        </h2>
+      </div>
+
+      <!-- Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+        <!-- Card 1: AI Scenery -->
+        <div class="fade-in liquid-glass rounded-[1.25rem] p-6 min-h-[320px] sm:min-h-[360px] flex flex-col" data-delay="400">
+          <div class="flex items-start justify-between gap-4">
+            <div class="liquid-glass rounded-[0.75rem] w-11 h-11 flex items-center justify-center flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="text-white h-6 w-6">
+                <path d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21H5Zm1-4h12l-3.75-5-3 4L9 13l-3 4Z"/>
+              </svg>
+            </div>
+            <div class="flex flex-wrap justify-end gap-1.5 max-w-[70%]">
+              <span class="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap">Natural Context</span>
+              <span class="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap">Photo Realism</span>
+              <span class="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap">Infinite Settings</span>
+              <span class="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap">Eco-Vibe</span>
+            </div>
+          </div>
+          <div class="flex-1"></div>
+          <div class="mt-6">
+            <h3 class="font-heading italic text-white text-3xl md:text-4xl tracking-[-1px] leading-none">AI Scenery</h3>
+            <p class="mt-3 text-sm text-white/90 font-body font-light leading-snug max-w-[32ch]">AI analyzes your product to create indistinguishable natural environments — from Icelandic cliffs to misty forests.</p>
+          </div>
+        </div>
+
+        <!-- Card 2: Batch Production -->
+        <div class="fade-in liquid-glass rounded-[1.25rem] p-6 min-h-[320px] sm:min-h-[360px] flex flex-col" data-delay="550">
+          <div class="flex items-start justify-between gap-4">
+            <div class="liquid-glass rounded-[0.75rem] w-11 h-11 flex items-center justify-center flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="text-white h-6 w-6">
+                <path d="M4 6.47 5.76 10H20v8H4V6.47M22 4h-4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.89-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4Z"/>
+              </svg>
+            </div>
+            <div class="flex flex-wrap justify-end gap-1.5 max-w-[70%]">
+              <span class="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap">Scale Fast</span>
+              <span class="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap">Visual Consistency</span>
+              <span class="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap">Time Saver</span>
+              <span class="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap">Ready to Post</span>
+            </div>
+          </div>
+          <div class="flex-1"></div>
+          <div class="mt-6">
+            <h3 class="font-heading italic text-white text-3xl md:text-4xl tracking-[-1px] leading-none">Batch Production</h3>
+            <p class="mt-3 text-sm text-white/90 font-body font-light leading-snug max-w-[32ch]">Style your entire product line in minutes. Create a unified visual identity for catalogues and social media without weeks of retouching.</p>
+          </div>
+        </div>
+
+        <!-- Card 3: Smart Lighting -->
+        <div class="fade-in liquid-glass rounded-[1.25rem] p-6 min-h-[320px] sm:min-h-[360px] flex flex-col" data-delay="700">
+          <div class="flex items-start justify-between gap-4">
+            <div class="liquid-glass rounded-[0.75rem] w-11 h-11 flex items-center justify-center flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="text-white h-6 w-6">
+                <path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1Zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7Z"/>
+              </svg>
+            </div>
+            <div class="flex flex-wrap justify-end gap-1.5 max-w-[70%]">
+              <span class="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap">Ray Tracing</span>
+              <span class="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap">Physical Shadows</span>
+              <span class="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap">Studio Quality</span>
+              <span class="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap">Sunlight Sync</span>
+            </div>
+          </div>
+          <div class="flex-1"></div>
+          <div class="mt-6">
+            <h3 class="font-heading italic text-white text-3xl md:text-4xl tracking-[-1px] leading-none">Smart Lighting</h3>
+            <p class="mt-3 text-sm text-white/90 font-body font-light leading-snug max-w-[32ch]">Automatic lighting and material adjustment. Achieve flawless integration with realistic shadows and sunlight.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========== FOOTER ========== -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <a href="#home" class="footer-logo">Nour//Dev</a>
-        <p>&copy; 2025 Nour//Dev. All rights reserved.</p>
-        <div class="footer-socials">
-          <a href="https://wa.me/393508808971" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <script>
+  (function() {
+    'use strict';
 
-  <!-- Scroll to Top -->
-  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
-    <i class="fas fa-arrow-up"></i>
-  </button>
+    /* ----------------------------------------------------------
+       FadingVideo — rAF-driven crossfade (no CSS transitions)
+       ---------------------------------------------------------- */
+    var FADE_MS = 500;
+    var FADE_OUT_LEAD = 0.55;
 
-  <script src="script.js"></script>
+    document.querySelectorAll('[data-fading-video]').forEach(function(video) {
+      var rAFId = null;
+      var fadingOut = false;
+
+      function fadeTo(target, duration) {
+        if (rAFId) cancelAnimationFrame(rAFId);
+        var start = parseFloat(video.style.opacity) || 0;
+        var startTime = performance.now();
+        function step(now) {
+          var elapsed = now - startTime;
+          var progress = Math.min(elapsed / duration, 1);
+          video.style.opacity = start + (target - start) * progress;
+          if (progress < 1) {
+            rAFId = requestAnimationFrame(step);
+          }
+        }
+        rAFId = requestAnimationFrame(step);
+      }
+
+      video.addEventListener('loadeddata', function() {
+        video.style.opacity = '0';
+        video.play().catch(function(){});
+        fadeTo(1, FADE_MS);
+      });
+
+      video.addEventListener('timeupdate', function() {
+        if (!fadingOut && video.duration - video.currentTime <= FADE_OUT_LEAD && video.duration - video.currentTime > 0) {
+          fadingOut = true;
+          fadeTo(0, FADE_MS);
+        }
+      });
+
+      video.addEventListener('ended', function() {
+        video.style.opacity = '0';
+        setTimeout(function() {
+          video.currentTime = 0;
+          video.play().catch(function(){});
+          fadingOut = false;
+          fadeTo(1, FADE_MS);
+        }, 100);
+      });
+    });
+
+    /* ----------------------------------------------------------
+       BlurText — word-by-word blur-in animation
+       ---------------------------------------------------------- */
+    document.querySelectorAll('[data-blur-text]').forEach(function(el) {
+      var text = el.textContent.trim();
+      var words = text.split(/\s+/);
+      el.textContent = '';
+
+      words.forEach(function(word, i) {
+        var span = document.createElement('span');
+        span.className = 'blur-word';
+        span.textContent = word;
+        span.style.transitionDelay = (i * 100) + 'ms';
+        el.appendChild(span);
+      });
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            el.querySelectorAll('.blur-word').forEach(function(w) {
+              w.classList.add('visible');
+            });
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.1 });
+
+      observer.observe(el);
+    });
+
+    /* ----------------------------------------------------------
+       Fade-in animations with staggered delays
+       ---------------------------------------------------------- */
+    var fadeElements = document.querySelectorAll('.fade-in');
+
+    var fadeObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var delay = parseInt(entry.target.getAttribute('data-delay') || '0', 10);
+          setTimeout(function() {
+            entry.target.classList.add('visible');
+          }, delay);
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    fadeElements.forEach(function(el) {
+      fadeObserver.observe(el);
+    });
+
+    /* ----------------------------------------------------------
+       Mobile menu toggle
+       ---------------------------------------------------------- */
+    var toggle = document.getElementById('mobileToggle');
+    var menu = document.getElementById('mobileMenu');
+    var line1 = document.getElementById('hamLine1');
+    var line2 = document.getElementById('hamLine2');
+    var line3 = document.getElementById('hamLine3');
+    var menuOpen = false;
+
+    if (toggle && menu) {
+      toggle.addEventListener('click', function() {
+        menuOpen = !menuOpen;
+        menu.classList.toggle('open', menuOpen);
+        line1.style.transform = menuOpen ? 'rotate(45deg) translate(4px, 4px)' : '';
+        line2.style.opacity = menuOpen ? '0' : '1';
+        line3.style.transform = menuOpen ? 'rotate(-45deg) translate(4px, -4px)' : '';
+      });
+
+      menu.querySelectorAll('a, button').forEach(function(link) {
+        link.addEventListener('click', function() {
+          menuOpen = false;
+          menu.classList.remove('open');
+          line1.style.transform = '';
+          line2.style.opacity = '1';
+          line3.style.transform = '';
+        });
+      });
+    }
+  })();
+  </script>
 </body>
 </html>
