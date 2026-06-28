@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nour//Dev — Where Your Vision Becomes Reality</title>
-  <meta name="description" content="Cinematic space-travel inspired portfolio by Nour — pioneering web experiences that venture past the ordinary." />
+  <title>Nour//Dev — Web Developer &amp; UI/UX Enthusiast</title>
+  <meta name="description" content="Professional web developer portfolio by Nour — modern, responsive websites and full-stack applications. Available for freelance projects." />
+  <meta name="keywords" content="web developer, portfolio, frontend, full stack, React, Node.js, freelance, Nour" />
   <meta name="author" content="Nour//Dev" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Nour//Dev — Where Your Vision Becomes Reality" />
-  <meta property="og:description" content="Cinematic space-travel inspired portfolio — pioneering web experiences." />
+  <meta property="og:title" content="Nour//Dev — Web Developer & UI/UX Enthusiast" />
+  <meta property="og:description" content="Professional web developer portfolio by Nour — modern, responsive websites and full-stack applications." />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/img/og-preview.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Nour//Dev — Web Developer & UI/UX Enthusiast" />
+  <meta name="twitter:description" content="Professional web developer portfolio by Nour — modern, responsive websites and full-stack applications." />
 
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#60;/&#62;</text></svg>" />
@@ -19,6 +26,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -39,11 +49,71 @@
   </script>
 
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Barlow', sans-serif; background: #000; color: #fff; overflow-x: hidden; }
+    /* ============================================================
+       DESIGN SYSTEM & VARIABLES
+       ============================================================ */
+    :root {
+      --bg: #0a0a0f;
+      --bg-alt: #0d0d14;
+      --surface: #112240;
+      --surface-hover: #1a2f55;
+      --primary: #0066ff;
+      --primary-glow: rgba(0, 102, 255, 0.35);
+      --secondary: #00d4ff;
+      --secondary-glow: rgba(0, 212, 255, 0.25);
+      --text: #ffffff;
+      --text-secondary: #8892b0;
+      --border: rgba(255, 255, 255, 0.08);
+      --glass-bg: rgba(17, 34, 64, 0.6);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+      --nav-bg: rgba(10, 10, 15, 0.85);
+      --radius: 12px;
+      --radius-sm: 8px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-    /* Liquid-glass */
+    [data-theme="light"] {
+      --bg: #f5f7fa;
+      --bg-alt: #edf0f5;
+      --surface: #ffffff;
+      --surface-hover: #f0f4ff;
+      --primary: #0055dd;
+      --primary-glow: rgba(0, 85, 221, 0.2);
+      --secondary: #0099cc;
+      --secondary-glow: rgba(0, 153, 204, 0.15);
+      --text: #1a1a2e;
+      --text-secondary: #5a6380;
+      --border: rgba(0, 0, 0, 0.08);
+      --glass-bg: rgba(255, 255, 255, 0.7);
+      --glass-border: rgba(0, 0, 0, 0.08);
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.12);
+      --nav-bg: rgba(245, 247, 250, 0.9);
+    }
+
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body {
+      font-family: 'Barlow', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+      transition: background var(--transition), color var(--transition);
+    }
+    a { text-decoration: none; color: inherit; transition: color var(--transition); }
+    img { max-width: 100%; display: block; }
+    ul { list-style: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* ============================================================
+       LIQUID-GLASS UTILITIES
+       ============================================================ */
     .liquid-glass {
       background: rgba(255,255,255,0.01);
       background-blend-mode: luminosity;
@@ -100,7 +170,9 @@
       pointer-events: none;
     }
 
-    /* Fade-in animation */
+    /* ============================================================
+       ANIMATIONS — Fade-in with blur, blur-text words
+       ============================================================ */
     .fade-in {
       opacity: 0;
       filter: blur(10px);
@@ -113,7 +185,6 @@
       transform: translateY(0);
     }
 
-    /* Blur-text word animation */
     .blur-word {
       display: inline-block;
       opacity: 0;
@@ -128,262 +199,1100 @@
       transform: translateY(0);
     }
 
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); filter: blur(6px); }
+      to { opacity: 1; transform: translateY(0); filter: blur(0px); }
+    }
+
+    /* ============================================================
+       SECTION BASE
+       ============================================================ */
+    .section { padding: 100px 0; }
+    .section-alt { background: var(--bg-alt); }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      margin-bottom: 60px;
+    }
+
+    /* ============================================================
+       BUTTONS
+       ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+      font-family: inherit;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      box-shadow: 0 4px 15px var(--primary-glow);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px var(--primary-glow);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--primary);
+    }
+    .btn-outline:hover {
+      background: var(--primary);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px var(--primary-glow);
+    }
+    .btn-block { width: 100%; justify-content: center; }
+    .btn-sm {
+      padding: 10px 18px;
+      font-size: 0.85rem;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      box-shadow: 0 2px 10px var(--primary-glow);
+    }
+    .btn-sm:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px var(--primary-glow);
+    }
+
+    /* ============================================================
+       NAVBAR
+       ============================================================ */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 16px 0;
+      background: transparent;
+      transition: all var(--transition);
+    }
+    .navbar.scrolled {
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 10px 0;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; }
+    .nav-logo-text {
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: var(--text);
+      transition: all var(--transition);
+    }
+    .nav-logo-accent {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-size: 2rem;
+    }
+    .nav-logo:hover .nav-logo-text { text-shadow: 0 0 20px var(--primary-glow); }
+    .nav-links { display: flex; gap: 8px; }
+    .nav-link {
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition);
+    }
+    .nav-link:hover, .nav-link.active { color: var(--text); background: rgba(0, 102, 255, 0.1); }
+    .nav-link.active { color: var(--primary); }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      position: relative;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--glass-bg);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all var(--transition);
+      overflow: hidden;
+    }
+    .theme-toggle:hover { border-color: var(--primary); box-shadow: 0 0 15px var(--primary-glow); }
+    .theme-toggle .fa-moon { position: absolute; color: var(--text); font-size: 1.1rem; opacity: 1; transform: rotate(0); transition: all 0.4s ease; }
+    .theme-toggle .fa-sun { position: absolute; color: var(--text); font-size: 1.1rem; opacity: 0; transform: rotate(-90deg); transition: all 0.4s ease; }
+    [data-theme="light"] .theme-toggle .fa-moon { opacity: 0; transform: rotate(90deg); }
+    [data-theme="light"] .theme-toggle .fa-sun { opacity: 1; transform: rotate(0); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      width: 28px; height: 20px;
+      background: none; border: none;
+      cursor: pointer; padding: 0;
+    }
+    .hamburger span {
+      display: block; width: 100%; height: 2px;
+      background: var(--text); border-radius: 2px;
+      transition: all var(--transition);
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* ============================================================
+       HERO — Video Background with Typing Slogan
+       ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      z-index: 1;
+      background: rgba(0, 0, 0, 0.55);
+    }
+    .hero-slogan {
+      position: relative; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 0 24px;
+    }
+    .slogan-text {
+      font-size: clamp(1.6rem, 4vw, 3rem);
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+      line-height: 1.3;
+    }
+    .slogan-cursor {
+      display: inline-block;
+      width: 3px; height: 1.1em;
+      background: #ffffff;
+      margin-left: 4px;
+      vertical-align: middle;
+      animation: sloganBlink 0.75s infinite;
+    }
+    @keyframes sloganBlink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 30px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+    .hero-scroll a {
+      color: rgba(255,255,255,0.6);
+      font-size: 1.2rem; opacity: 0.5;
+      transition: opacity var(--transition);
+      animation: scrollBounce 2s infinite;
+    }
+    .hero-scroll a:hover { opacity: 1; }
+    @keyframes scrollBounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-8px); }
+      60% { transform: translateY(-4px); }
+    }
+
+    /* ============================================================
+       ABOUT
+       ============================================================ */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .about-photo-frame {
+      position: relative;
+      width: 300px; height: 360px;
+      margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .photo-container {
+      position: relative;
+      width: 260px; height: 320px;
+      border-radius: 20px;
+      overflow: hidden; z-index: 2;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.05);
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .about-photo-frame:hover .photo-container {
+      transform: translateY(-6px);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,102,255,0.2), 0 0 40px rgba(0,102,255,0.08);
+    }
+    .profile-photo {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.6s ease;
+    }
+    .about-photo-frame:hover .profile-photo { transform: scale(1.05); }
+    .photo-glow {
+      position: absolute; inset: -20px;
+      border-radius: 30px; z-index: 0;
+      background: radial-gradient(ellipse at center, rgba(0,102,255,0.12) 0%, transparent 70%);
+      opacity: 0; transition: opacity 0.5s ease;
+    }
+    .about-photo-frame:hover .photo-glow { opacity: 1; }
+    .photo-ring {
+      position: absolute; inset: -8px;
+      border-radius: 24px;
+      border: 1px solid rgba(0,102,255,0.15);
+      z-index: 1; transition: all 0.5s ease;
+    }
+    .about-photo-frame:hover .photo-ring { border-color: rgba(0,102,255,0.35); inset: -12px; border-radius: 28px; }
+    .photo-accent-line {
+      position: absolute; width: 40px; height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      z-index: 3; border-radius: 2px; transition: width 0.4s ease;
+    }
+    .photo-accent-top { top: -2px; left: 24px; }
+    .photo-accent-bottom { bottom: -2px; right: 24px; }
+    .about-photo-frame:hover .photo-accent-line { width: 60px; }
+    .about-text { color: var(--text-secondary); margin-bottom: 20px; font-size: 1rem; line-height: 1.8; }
+    .about-text-highlight {
+      color: var(--text); font-weight: 600; font-style: italic;
+      border-left: 3px solid var(--primary); padding-left: 16px; margin-top: 8px;
+    }
+    .about-info { display: flex; flex-wrap: wrap; gap: 20px; margin: 32px 0; }
+    .info-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 20px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    }
+    .info-item i { color: var(--primary); font-size: 1.2rem; }
+    .info-label { display: block; font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
+    .info-value { display: block; font-weight: 600; font-size: 0.9rem; }
+
+    /* ============================================================
+       SKILLS
+       ============================================================ */
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .skill-category {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      padding: 32px 24px;
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      transition: all var(--transition);
+    }
+    .skill-category:hover {
+      border-color: var(--primary);
+      box-shadow: 0 0 25px var(--primary-glow);
+      transform: translateY(-4px);
+    }
+    .category-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+    .category-header i { font-size: 1.5rem; color: var(--primary); }
+    .category-header h3 { font-size: 1.2rem; font-weight: 700; }
+    .skill-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .skill-card {
+      display: flex; align-items: center; gap: 10px;
+      padding: 14px 16px;
+      background: rgba(0,0,0,0.2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition);
+    }
+    [data-theme="light"] .skill-card { background: rgba(0,0,0,0.03); }
+    .skill-card:hover {
+      border-color: var(--secondary);
+      box-shadow: 0 0 15px var(--secondary-glow);
+      transform: translateY(-2px);
+    }
+    .skill-card i { font-size: 1.4rem; color: var(--secondary); }
+    .skill-card span { font-size: 0.85rem; font-weight: 600; }
+
+    /* ============================================================
+       PROJECTS
+       ============================================================ */
+    .project-filters { display: flex; justify-content: center; gap: 12px; margin-bottom: 48px; flex-wrap: wrap; }
+    .filter-btn {
+      padding: 10px 24px; font-size: 0.9rem; font-weight: 500;
+      border: 1px solid var(--border); border-radius: 50px;
+      background: transparent; color: var(--text-secondary);
+      cursor: pointer; transition: all var(--transition); font-family: inherit;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--primary); color: #fff; border-color: var(--primary);
+      box-shadow: 0 4px 15px var(--primary-glow);
+    }
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .project-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      transition: all var(--transition);
+    }
+    .project-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--primary); }
+    .project-card.hidden { display: none; }
+    .project-image { position: relative; height: 200px; overflow: hidden; }
+    .project-thumb { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .project-card:hover .project-thumb { transform: scale(1.05); }
+    .project-overlay {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.8);
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      opacity: 0; transition: opacity var(--transition);
+    }
+    .project-card:hover .project-overlay { opacity: 1; }
+    .project-info { padding: 20px; }
+    .project-info h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .project-info p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin-bottom: 16px; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .project-tags span {
+      padding: 4px 12px; font-size: 0.75rem; font-weight: 500;
+      border-radius: 50px;
+      background: rgba(0,102,255,0.12); color: var(--primary);
+      border: 1px solid rgba(0,102,255,0.2);
+    }
+
+    /* ============================================================
+       PRICING
+       ============================================================ */
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-bottom: 60px; }
+    .pricing-card {
+      position: relative;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      padding: 40px 28px;
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      transition: all var(--transition);
+      display: flex; flex-direction: column;
+    }
+    .pricing-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .pricing-popular { border-color: var(--primary); box-shadow: 0 0 30px var(--primary-glow); transform: scale(1.03); }
+    .pricing-popular:hover { transform: scale(1.03) translateY(-6px); }
+    .popular-badge {
+      position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff; font-size: 0.75rem; font-weight: 700;
+      padding: 6px 20px;
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+    .pricing-header { text-align: center; margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
+    .pricing-header h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; }
+    .pricing-price {
+      font-size: 1.8rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      margin-bottom: 8px;
+    }
+    .pricing-desc { color: var(--text-secondary); font-size: 0.9rem; }
+    .pricing-features { flex: 1; margin-bottom: 28px; }
+    .pricing-features li { display: flex; align-items: center; gap: 10px; padding: 8px 0; font-size: 0.9rem; color: var(--text-secondary); }
+    .pricing-features li i { color: var(--secondary); font-size: 0.8rem; }
+
+    /* Add-ons */
+    .addons {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius);
+      padding: 40px;
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    }
+    .addons-title { font-size: 1.3rem; font-weight: 700; text-align: center; margin-bottom: 28px; }
+    .addons-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .addon-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 20px;
+      background: rgba(0,0,0,0.2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition);
+    }
+    [data-theme="light"] .addon-item { background: rgba(0,0,0,0.03); }
+    .addon-item:hover { border-color: var(--primary); box-shadow: 0 0 15px var(--primary-glow); }
+    .addon-item span { font-size: 0.85rem; color: var(--text-secondary); }
+    .addon-item strong { font-size: 0.9rem; color: var(--primary); }
+
+    /* ============================================================
+       CONTACT
+       ============================================================ */
+    .contact-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: start; }
+    .contact-form { display: flex; flex-direction: column; gap: 20px; }
+    .form-group { position: relative; }
+    .form-group input, .form-group textarea {
+      width: 100%; padding: 16px 20px;
+      font-size: 0.95rem; font-family: inherit;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      color: var(--text);
+      transition: all var(--transition);
+      outline: none;
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 15px var(--primary-glow);
+    }
+    .form-group label {
+      position: absolute; top: 50%; left: 20px;
+      transform: translateY(-50%);
+      font-size: 0.9rem; color: var(--text-secondary);
+      pointer-events: none; transition: all var(--transition); opacity: 0;
+    }
+    .form-group textarea ~ label { top: 20px; transform: none; }
+    .form-group input:focus ~ label,
+    .form-group input:not(:placeholder-shown) ~ label,
+    .form-group textarea:focus ~ label,
+    .form-group textarea:not(:placeholder-shown) ~ label {
+      top: -10px; left: 14px; font-size: 0.75rem;
+      color: var(--primary); opacity: 1;
+      background: var(--bg); padding: 0 6px;
+    }
+    .section-alt .form-group input:focus ~ label,
+    .section-alt .form-group input:not(:placeholder-shown) ~ label,
+    .section-alt .form-group textarea:focus ~ label,
+    .section-alt .form-group textarea:not(:placeholder-shown) ~ label { background: var(--bg-alt); }
+
+    .btn-send { position: relative; overflow: hidden; }
+    .btn-sending, .btn-sent { display: none; }
+    .btn-send.sending .btn-text { display: none; }
+    .btn-send.sending .btn-sending { display: inline-flex; align-items: center; gap: 8px; }
+    .btn-send.sent .btn-text { display: none; }
+    .btn-send.sent .btn-sent { display: inline-flex; align-items: center; gap: 8px; }
+
+    .contact-info h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 16px; }
+    .contact-info > p { color: var(--text-secondary); margin-bottom: 32px; line-height: 1.8; }
+    .contact-links { display: flex; flex-direction: column; gap: 16px; }
+    .contact-link {
+      display: flex; align-items: center; gap: 16px;
+      padding: 16px 20px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      transition: all var(--transition);
+    }
+    .contact-link:hover { border-color: var(--primary); box-shadow: 0 0 15px var(--primary-glow); transform: translateX(6px); }
+    .contact-link i { font-size: 1.5rem; color: var(--primary); }
+    .link-label { display: block; font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
+    .link-value { font-weight: 600; font-size: 0.9rem; }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .footer { padding: 40px 0; border-top: 1px solid var(--border); }
+    .footer-content { display: flex; align-items: center; justify-content: space-between; }
+    .footer-logo {
+      font-size: 1.3rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      letter-spacing: 1px;
+    }
+    .footer-content p { color: var(--text-secondary); font-size: 0.85rem; }
+    .footer-socials { display: flex; gap: 16px; }
+    .footer-socials a {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-secondary);
+      transition: all var(--transition);
+    }
+    .footer-socials a:hover {
+      color: var(--primary); border-color: var(--primary);
+      box-shadow: 0 0 15px var(--primary-glow);
+      transform: translateY(-3px);
+    }
+
+    /* ============================================================
+       SCROLL-TO-TOP
+       ============================================================ */
+    .scroll-top {
+      position: fixed; bottom: 30px; right: 30px;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff; border: none; cursor: pointer;
+      font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden; transform: translateY(20px);
+      transition: all var(--transition);
+      z-index: 999;
+      box-shadow: 0 4px 15px var(--primary-glow);
+    }
+    .scroll-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    .scroll-top:hover { transform: translateY(-4px); box-shadow: 0 8px 30px var(--primary-glow); }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 1024px) {
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
+      .pricing-popular { transform: none; }
+      .pricing-popular:hover { transform: translateY(-6px); }
+      .addons-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        position: fixed; top: 0; right: -100%;
+        width: 280px; height: 100vh;
+        background: var(--bg);
+        flex-direction: column;
+        padding: 100px 32px 32px; gap: 4px;
+        transition: right var(--transition);
+        box-shadow: var(--shadow-lg); z-index: 998;
+      }
+      .nav-links.open { right: 0; }
+      .nav-link { font-size: 1rem; padding: 12px 16px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-photo-frame { width: 240px; height: 300px; }
+      .photo-container { width: 210px; height: 270px; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-content { flex-direction: column; gap: 16px; text-align: center; }
+      .section { padding: 70px 0; }
+    }
+
+    @media (max-width: 480px) {
+      .about-info { flex-direction: column; }
+      .addons-grid { grid-template-columns: 1fr; }
+      .addons { padding: 24px 16px; }
+      .project-filters { gap: 8px; }
+      .filter-btn { padding: 8px 16px; font-size: 0.8rem; }
+    }
+
     /* Hide scrollbar */
     ::-webkit-scrollbar { width: 0; background: transparent; }
-
-    /* Mobile menu */
-    .mobile-menu {
-      display: none;
-      position: absolute;
-      top: 64px;
-      left: 16px;
-      right: 16px;
-      z-index: 60;
-    }
-    .mobile-menu.open { display: flex; }
-
-    @media (max-width: 767px) {
-      .desktop-nav { display: none !important; }
-      .mobile-toggle { display: flex !important; }
-    }
-    @media (min-width: 768px) {
-      .mobile-toggle { display: none !important; }
-      .mobile-menu { display: none !important; }
-    }
   </style>
 </head>
-<body class="bg-black">
+<body>
 
-  <!-- ========== SECTION 1: HERO ========== -->
-  <section class="relative min-h-screen flex flex-col bg-black overflow-hidden" id="hero">
-    <!-- Background video -->
-    <video
-      class="hero-video absolute left-1/2 top-0 -translate-x-1/2 object-cover object-top z-0"
-      style="width: 120%; height: 120%; opacity: 0;"
-      autoplay muted playsinline preload="auto"
-      data-fading-video
-    >
-      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_080021_d598092b-c4c2-4e53-8e46-94cf9064cd50.mp4" type="video/mp4" />
-    </video>
-
-    <!-- z-10 layer -->
-    <div class="relative z-10 flex flex-col min-h-screen">
-
-      <!-- NAVBAR -->
-      <nav class="fixed top-4 left-0 right-0 px-4 sm:px-8 lg:px-16 z-50 flex items-center justify-between">
-        <!-- Logo -->
-        <div class="liquid-glass w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
-          <span class="font-heading italic text-white text-xl">a</span>
-        </div>
-
-        <!-- Desktop nav -->
-        <div class="desktop-nav liquid-glass rounded-full px-1.5 py-1.5 flex items-center gap-0">
-          <a href="#hero" class="px-3 py-2 text-sm font-medium text-white/90 font-body hover:text-white transition-colors whitespace-nowrap">Home</a>
-          <a href="#" class="px-3 py-2 text-sm font-medium text-white/90 font-body hover:text-white transition-colors whitespace-nowrap">Voyages</a>
-          <a href="#" class="px-3 py-2 text-sm font-medium text-white/90 font-body hover:text-white transition-colors whitespace-nowrap">Worlds</a>
-          <a href="#" class="px-3 py-2 text-sm font-medium text-white/90 font-body hover:text-white transition-colors whitespace-nowrap">Innovation</a>
-          <a href="#capabilities" class="px-3 py-2 text-sm font-medium text-white/90 font-body hover:text-white transition-colors whitespace-nowrap">Plan Launch</a>
-          <button class="bg-white text-black rounded-full px-4 py-2 text-sm font-medium flex items-center gap-1 whitespace-nowrap ml-1">
-            Claim a Spot
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </button>
-        </div>
-
-        <!-- Mobile hamburger -->
-        <button class="mobile-toggle liquid-glass w-12 h-12 rounded-full flex-col items-center justify-center gap-1.5" id="mobileToggle" style="display: none;">
-          <span class="block w-5 h-0.5 bg-white transition-transform" id="hamLine1"></span>
-          <span class="block w-5 h-0.5 bg-white transition-opacity" id="hamLine2"></span>
-          <span class="block w-5 h-0.5 bg-white transition-transform" id="hamLine3"></span>
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo"><span class="nav-logo-text">N<span class="nav-logo-accent">.</span></span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+        <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+        <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
+        <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
+        <li><a href="#pricing" class="nav-link" data-section="pricing">Pricing</a></li>
+        <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+          <i class="fas fa-moon"></i>
+          <i class="fas fa-sun"></i>
         </button>
-
-        <!-- Spacer -->
-        <div class="w-12 h-12 hidden md:block"></div>
-
-        <!-- Mobile menu -->
-        <div class="mobile-menu liquid-glass-strong rounded-[1.25rem] p-6 flex-col gap-3" id="mobileMenu">
-          <a href="#hero" class="text-white/90 font-body text-base py-2">Home</a>
-          <a href="#" class="text-white/90 font-body text-base py-2">Voyages</a>
-          <a href="#" class="text-white/90 font-body text-base py-2">Worlds</a>
-          <a href="#" class="text-white/90 font-body text-base py-2">Innovation</a>
-          <a href="#capabilities" class="text-white/90 font-body text-base py-2">Plan Launch</a>
-          <button class="bg-white text-black rounded-full px-4 py-3 text-sm font-medium flex items-center justify-center gap-1 mt-2">
-            Claim a Spot
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </button>
-        </div>
-      </nav>
-
-      <!-- HERO CONTENT -->
-      <div class="flex-1 flex flex-col items-center justify-center pt-24 px-4 text-center">
-        <!-- Badge -->
-        <div class="fade-in" data-delay="400">
-          <div class="liquid-glass rounded-full inline-flex items-center gap-2 pr-3 mb-6">
-            <span class="bg-white text-black px-3 py-1 text-xs font-semibold rounded-full">New</span>
-            <span class="text-sm text-white/90 font-body">Maiden Crewed Voyage to Mars Arrives 2026</span>
-          </div>
-        </div>
-
-        <!-- Headline (blur-text) -->
-        <p class="blur-text-container text-4xl sm:text-5xl md:text-7xl lg:text-[5.5rem] font-heading italic text-white leading-[0.85] max-w-2xl tracking-[-3px] md:tracking-[-4px]" style="display: flex; flex-wrap: wrap; justify-content: center; row-gap: 0.1em;" data-blur-text>
-          Venture Past Our Sky Across the Universe
-        </p>
-
-        <!-- Subheading -->
-        <p class="fade-in mt-4 text-sm md:text-base text-white max-w-2xl font-body font-light leading-tight px-4" data-delay="800">
-          Discover the universe in ways once unimaginable. Our pioneering vessels and breakthrough engineering bring deep-space exploration within reach—secure and extraordinary.
-        </p>
-
-        <!-- CTAs -->
-        <div class="fade-in flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mt-6" data-delay="1100">
-          <button class="liquid-glass-strong rounded-full px-5 py-2.5 text-sm font-medium text-white flex items-center gap-2">
-            Start Your Voyage
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-          </button>
-          <button class="text-white/90 text-sm font-body font-medium flex items-center gap-2 hover:text-white transition-colors">
-            View Liftoff
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 4 20 12 6 20 6 4"/></svg>
-          </button>
-        </div>
-
-        <!-- Stats -->
-        <div class="fade-in flex flex-col sm:flex-row items-stretch gap-4 mt-8" data-delay="1300">
-          <div class="liquid-glass rounded-[1.25rem] p-5 w-[220px]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-            </svg>
-            <p class="font-heading italic text-white text-4xl tracking-[-1px] leading-none mt-3">34.5 Min</p>
-            <p class="text-xs text-white font-body font-light mt-2">Average Videos Watch Time</p>
-          </div>
-          <div class="liquid-glass rounded-[1.25rem] p-5 w-[220px]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-            </svg>
-            <p class="font-heading italic text-white text-4xl tracking-[-1px] leading-none mt-3">2.8B+</p>
-            <p class="text-xs text-white font-body font-light mt-2">Users Across the Globe</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- PARTNERS -->
-      <div class="fade-in flex flex-col items-center gap-4 pb-8" data-delay="1400">
-        <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body">
-          Collaborating with top aerospace pioneers globally
-        </div>
-        <div class="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-12 lg:gap-16">
-          <span class="font-heading italic text-white text-xl sm:text-2xl md:text-3xl tracking-tight">Aeon</span>
-          <span class="font-heading italic text-white text-xl sm:text-2xl md:text-3xl tracking-tight">Vela</span>
-          <span class="font-heading italic text-white text-xl sm:text-2xl md:text-3xl tracking-tight">Apex</span>
-          <span class="font-heading italic text-white text-xl sm:text-2xl md:text-3xl tracking-tight">Orbit</span>
-          <span class="font-heading italic text-white text-xl sm:text-2xl md:text-3xl tracking-tight">Zeno</span>
-        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
-  </section>
+  </nav>
 
-  <!-- ========== SECTION 2: CAPABILITIES ========== -->
-  <section class="relative min-h-screen bg-black overflow-hidden" id="capabilities">
-    <!-- Background video -->
-    <video
-      class="absolute inset-0 w-full h-full object-cover z-0"
-      style="opacity: 0;"
-      autoplay muted playsinline preload="auto"
-      data-fading-video
-    >
-      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_094631_d30ab262-45ee-4b7d-99f3-5d5848c8ef13.mp4" type="video/mp4" />
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="home">
+    <video class="hero-video" autoplay muted playsinline preload="auto" data-fading-video style="opacity: 0;">
+      <source src="assets/video/hero-bg.mp4" type="video/mp4" />
     </video>
+    <div class="hero-overlay"></div>
 
-    <!-- Content -->
-    <div class="relative z-10 px-4 sm:px-8 md:px-16 lg:px-20 pt-24 pb-10 flex flex-col min-h-screen">
-      <!-- Header -->
-      <div class="mb-auto">
-        <p class="fade-in text-sm font-body text-white/80 mb-6">// Capabilities</p>
-        <h2 class="fade-in font-heading italic text-white text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] leading-[0.9] tracking-[-3px]" data-delay="200">
-          Production<br/>evolved
-        </h2>
+    <div class="hero-slogan">
+      <span class="slogan-text" id="sloganText"></span>
+      <span class="slogan-cursor"></span>
+    </div>
+
+    <div class="hero-scroll">
+      <a href="#about" aria-label="Scroll down"><i class="fas fa-chevron-down"></i></a>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT ========== -->
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="section-title fade-in">About Me</h2>
+      <p class="section-subtitle fade-in" data-delay="100">Get to know the person behind the code</p>
+      <div class="about-grid">
+        <div class="about-image fade-in" data-delay="200">
+          <div class="about-photo-frame">
+            <div class="photo-glow"></div>
+            <div class="photo-container">
+              <img src="assets/img/me.png" alt="Nour" class="profile-photo" />
+            </div>
+            <div class="photo-ring"></div>
+            <div class="photo-accent-line photo-accent-top"></div>
+            <div class="photo-accent-line photo-accent-bottom"></div>
+          </div>
+        </div>
+        <div class="about-content">
+          <p class="about-text fade-in" data-delay="300">
+            Some people see websites as pages on a screen. I see them as experiences.
+          </p>
+          <p class="about-text fade-in" data-delay="400">
+            For the past two years, I've been immersed in the art of web development &mdash; exploring, learning, and building digital spaces where creativity meets functionality. Every line of code, every animation, and every interaction is crafted with a single goal: creating something people remember.
+          </p>
+          <p class="about-text fade-in" data-delay="500">
+            My foundation in Mechatronics Engineering gave me the discipline to solve problems and think beyond the obvious. Combined with an obsession for design and technology, it allows me to transform ideas into modern, engaging, and impactful web experiences.
+          </p>
+          <p class="about-text about-text-highlight fade-in" data-delay="600">
+            This is only the beginning of my journey &mdash; and I'm just getting started.
+          </p>
+          <div class="about-info fade-in" data-delay="700">
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <span class="info-label">Location</span>
+                <span class="info-value">Italy</span>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-briefcase"></i>
+              <div>
+                <span class="info-label">Experience</span>
+                <span class="info-value">2 Years</span>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-check-circle"></i>
+              <div>
+                <span class="info-label">Availability</span>
+                <span class="info-value">Open for Projects</span>
+              </div>
+            </div>
+          </div>
+          <a href="#" class="btn btn-primary fade-in" data-delay="800" download>
+            <i class="fas fa-download"></i> Download CV
+          </a>
+        </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
-        <!-- Card 1: AI Scenery -->
-        <div class="fade-in liquid-glass rounded-[1.25rem] p-6 min-h-[320px] sm:min-h-[360px] flex flex-col" data-delay="400">
-          <div class="flex items-start justify-between gap-4">
-            <div class="liquid-glass rounded-[0.75rem] w-11 h-11 flex items-center justify-center flex-shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="text-white h-6 w-6">
-                <path d="M5 21q-.825 0-1.412-.587T3 19V5q0-.825.588-1.412T5 3h14q.825 0 1.413.588T21 5v14q0 .825-.587 1.413T19 21H5Zm1-4h12l-3.75-5-3 4L9 13l-3 4Z"/>
-              </svg>
-            </div>
-            <div class="flex flex-wrap justify-end gap-1.5 max-w-[70%]">
-              <span class="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap">Natural Context</span>
-              <span class="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap">Photo Realism</span>
-              <span class="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap">Infinite Settings</span>
-              <span class="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap">Eco-Vibe</span>
-            </div>
+  <!-- ========== SKILLS ========== -->
+  <section class="section section-alt" id="skills">
+    <div class="container">
+      <h2 class="section-title fade-in">My Skills</h2>
+      <p class="section-subtitle fade-in" data-delay="100">Technologies & tools I work with</p>
+      <div class="skills-grid">
+        <!-- Frontend -->
+        <div class="skill-category fade-in" data-delay="200">
+          <div class="category-header">
+            <i class="fas fa-laptop-code"></i>
+            <h3>Frontend</h3>
           </div>
-          <div class="flex-1"></div>
-          <div class="mt-6">
-            <h3 class="font-heading italic text-white text-3xl md:text-4xl tracking-[-1px] leading-none">AI Scenery</h3>
-            <p class="mt-3 text-sm text-white/90 font-body font-light leading-snug max-w-[32ch]">AI analyzes your product to create indistinguishable natural environments — from Icelandic cliffs to misty forests.</p>
+          <div class="skill-cards">
+            <div class="skill-card"><i class="fab fa-html5"></i><span>HTML5</span></div>
+            <div class="skill-card"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
+            <div class="skill-card"><i class="fab fa-js-square"></i><span>JavaScript</span></div>
+            <div class="skill-card"><i class="fab fa-react"></i><span>React</span></div>
           </div>
         </div>
-
-        <!-- Card 2: Batch Production -->
-        <div class="fade-in liquid-glass rounded-[1.25rem] p-6 min-h-[320px] sm:min-h-[360px] flex flex-col" data-delay="550">
-          <div class="flex items-start justify-between gap-4">
-            <div class="liquid-glass rounded-[0.75rem] w-11 h-11 flex items-center justify-center flex-shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="text-white h-6 w-6">
-                <path d="M4 6.47 5.76 10H20v8H4V6.47M22 4h-4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.89-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4Z"/>
-              </svg>
-            </div>
-            <div class="flex flex-wrap justify-end gap-1.5 max-w-[70%]">
-              <span class="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap">Scale Fast</span>
-              <span class="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap">Visual Consistency</span>
-              <span class="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap">Time Saver</span>
-              <span class="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap">Ready to Post</span>
-            </div>
+        <!-- Backend -->
+        <div class="skill-category fade-in" data-delay="350">
+          <div class="category-header">
+            <i class="fas fa-server"></i>
+            <h3>Backend</h3>
           </div>
-          <div class="flex-1"></div>
-          <div class="mt-6">
-            <h3 class="font-heading italic text-white text-3xl md:text-4xl tracking-[-1px] leading-none">Batch Production</h3>
-            <p class="mt-3 text-sm text-white/90 font-body font-light leading-snug max-w-[32ch]">Style your entire product line in minutes. Create a unified visual identity for catalogues and social media without weeks of retouching.</p>
+          <div class="skill-cards">
+            <div class="skill-card"><i class="fab fa-node-js"></i><span>Node.js</span></div>
+            <div class="skill-card"><i class="fas fa-database"></i><span>MongoDB</span></div>
           </div>
         </div>
-
-        <!-- Card 3: Smart Lighting -->
-        <div class="fade-in liquid-glass rounded-[1.25rem] p-6 min-h-[320px] sm:min-h-[360px] flex flex-col" data-delay="700">
-          <div class="flex items-start justify-between gap-4">
-            <div class="liquid-glass rounded-[0.75rem] w-11 h-11 flex items-center justify-center flex-shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="text-white h-6 w-6">
-                <path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1Zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7Z"/>
-              </svg>
-            </div>
-            <div class="flex flex-wrap justify-end gap-1.5 max-w-[70%]">
-              <span class="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap">Ray Tracing</span>
-              <span class="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap">Physical Shadows</span>
-              <span class="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap">Studio Quality</span>
-              <span class="liquid-glass rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap">Sunlight Sync</span>
-            </div>
+        <!-- Tools -->
+        <div class="skill-category fade-in" data-delay="500">
+          <div class="category-header">
+            <i class="fas fa-tools"></i>
+            <h3>Tools</h3>
           </div>
-          <div class="flex-1"></div>
-          <div class="mt-6">
-            <h3 class="font-heading italic text-white text-3xl md:text-4xl tracking-[-1px] leading-none">Smart Lighting</h3>
-            <p class="mt-3 text-sm text-white/90 font-body font-light leading-snug max-w-[32ch]">Automatic lighting and material adjustment. Achieve flawless integration with realistic shadows and sunlight.</p>
+          <div class="skill-cards">
+            <div class="skill-card"><i class="fab fa-git-alt"></i><span>Git</span></div>
+            <div class="skill-card"><i class="fab fa-github"></i><span>GitHub</span></div>
+            <div class="skill-card"><i class="fab fa-figma"></i><span>Figma</span></div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- ========== PROJECTS ========== -->
+  <section class="section" id="projects">
+    <div class="container">
+      <h2 class="section-title fade-in">My Projects</h2>
+      <p class="section-subtitle fade-in" data-delay="100">A selection of my recent work</p>
+
+      <!-- Filters -->
+      <div class="project-filters fade-in" data-delay="200">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="business">Business</button>
+        <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
+      </div>
+
+      <!-- Project Grid -->
+      <div class="projects-grid">
+        <div class="project-card fade-in" data-category="business" data-delay="300">
+          <div class="project-image">
+            <img src="assets/img/project-mplus.png" alt="m+ more than Marche" class="project-thumb" />
+            <div class="project-overlay">
+              <a href="#" class="btn btn-sm" target="_blank"><i class="fas fa-external-link-alt"></i> View Project</a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3>m+ more than Marche</h3>
+            <p>Cultural platform showcasing the rich heritage, events, and business ecosystem of the Marche region in Italy.</p>
+            <div class="project-tags">
+              <span>Web Design</span><span>Culture</span><span>Business</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card fade-in" data-category="business" data-delay="400">
+          <div class="project-image">
+            <img src="assets/img/project-ilchiosco.png" alt="Il Chiosco" class="project-thumb" />
+            <div class="project-overlay">
+              <a href="#" class="btn btn-sm" target="_blank"><i class="fas fa-external-link-alt"></i> View Project</a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3>Il Chiosco</h3>
+            <p>Elegant restaurant &amp; bar website featuring an interactive digital menu, photo gallery, and seamless reservation experience.</p>
+            <div class="project-tags">
+              <span>Restaurant</span><span>Menu</span><span>Gallery</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card fade-in" data-category="ecommerce" data-delay="500">
+          <div class="project-image">
+            <img src="assets/img/project-eshop.png" alt="Olfazeta E-Shop" class="project-thumb" />
+            <div class="project-overlay">
+              <a href="#" class="btn btn-sm" target="_blank"><i class="fas fa-external-link-alt"></i> View Project</a>
+            </div>
+          </div>
+          <div class="project-info">
+            <h3>Olfazeta E-Shop</h3>
+            <p>Premium e-commerce platform for a luxury perfume brand with product catalogue, cart, and secure checkout.</p>
+            <div class="project-tags">
+              <span>E-commerce</span><span>UI/UX</span><span>Catalogue</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PRICING ========== -->
+  <section class="section section-alt" id="pricing">
+    <div class="container">
+      <h2 class="section-title fade-in">Pricing Plans</h2>
+      <p class="section-subtitle fade-in" data-delay="100">Transparent pricing for every project size</p>
+
+      <div class="pricing-grid">
+        <!-- Starter -->
+        <div class="pricing-card fade-in" data-delay="200">
+          <div class="pricing-header">
+            <h3>Starter</h3>
+            <div class="pricing-price">&euro;299 &ndash; &euro;499</div>
+            <p class="pricing-desc">Perfect for personal sites &amp; landing pages</p>
+          </div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> 1&ndash;3 pages</li>
+            <li><i class="fas fa-check"></i> Responsive design</li>
+            <li><i class="fas fa-check"></i> Basic SEO</li>
+            <li><i class="fas fa-check"></i> Contact form</li>
+            <li><i class="fas fa-check"></i> GitHub Pages deploy</li>
+            <li><i class="fas fa-check"></i> 1 revision</li>
+            <li><i class="fas fa-check"></i> 7 days delivery</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline btn-block">Get Started</a>
+        </div>
+
+        <!-- Business -->
+        <div class="pricing-card pricing-popular fade-in" data-delay="350">
+          <div class="popular-badge">Most Popular</div>
+          <div class="pricing-header">
+            <h3>Business</h3>
+            <div class="pricing-price">&euro;1200 &ndash; &euro;1800</div>
+            <p class="pricing-desc">For growing businesses &amp; brands</p>
+          </div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> Up to 6 pages</li>
+            <li><i class="fas fa-check"></i> Custom UI/UX design</li>
+            <li><i class="fas fa-check"></i> Advanced SEO</li>
+            <li><i class="fas fa-check"></i> Smooth animations</li>
+            <li><i class="fas fa-check"></i> Email integration</li>
+            <li><i class="fas fa-check"></i> Google Analytics</li>
+            <li><i class="fas fa-check"></i> GitHub repo</li>
+            <li><i class="fas fa-check"></i> 3 revisions</li>
+            <li><i class="fas fa-check"></i> 14 days delivery</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary btn-block">Get Started</a>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="pricing-card fade-in" data-delay="500">
+          <div class="pricing-header">
+            <h3>Enterprise</h3>
+            <div class="pricing-price">&euro;2000 &ndash; &euro;2500</div>
+            <p class="pricing-desc">Full-scale web applications</p>
+          </div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> Full stack development</li>
+            <li><i class="fas fa-check"></i> Custom backend + database</li>
+            <li><i class="fas fa-check"></i> Authentication system</li>
+            <li><i class="fas fa-check"></i> Admin dashboard</li>
+            <li><i class="fas fa-check"></i> E-commerce (Stripe/PayPal)</li>
+            <li><i class="fas fa-check"></i> API integrations</li>
+            <li><i class="fas fa-check"></i> Unlimited pages</li>
+            <li><i class="fas fa-check"></i> 3 months support</li>
+            <li><i class="fas fa-check"></i> 30 days delivery</li>
+          </ul>
+          <a href="#contact" class="btn btn-outline btn-block">Get Started</a>
+        </div>
+      </div>
+
+      <!-- Add-ons -->
+      <div class="addons fade-in" data-delay="200">
+        <h3 class="addons-title">Add-ons</h3>
+        <div class="addons-grid">
+          <div class="addon-item"><span>Extra page</span><strong>&euro;49</strong></div>
+          <div class="addon-item"><span>Logo design</span><strong>&euro;149</strong></div>
+          <div class="addon-item"><span>Maintenance</span><strong>&euro;99/mo</strong></div>
+          <div class="addon-item"><span>SEO package</span><strong>&euro;249/mo</strong></div>
+          <div class="addon-item"><span>Speed optimization</span><strong>&euro;199</strong></div>
+          <div class="addon-item"><span>Extra revision</span><strong>&euro;59</strong></div>
+          <div class="addon-item"><span>Domain setup</span><strong>&euro;29</strong></div>
+          <div class="addon-item"><span>Hosting setup (1yr)</span><strong>&euro;99</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ========== -->
+  <section class="section" id="contact">
+    <div class="container">
+      <h2 class="section-title fade-in">Get In Touch</h2>
+      <p class="section-subtitle fade-in" data-delay="100">Let's build something great together</p>
+
+      <div class="contact-grid">
+        <form class="contact-form fade-in" id="contactForm" data-delay="200">
+          <div class="form-group">
+            <input type="text" id="name" placeholder="Your Name" required />
+            <label for="name">Name</label>
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" placeholder="Your Email" required />
+            <label for="email">Email</label>
+          </div>
+          <div class="form-group">
+            <input type="text" id="subject" placeholder="Subject" required />
+            <label for="subject">Subject</label>
+          </div>
+          <div class="form-group">
+            <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+            <label for="message">Message</label>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block btn-send">
+            <span class="btn-text">Send Message</span>
+            <span class="btn-sending"><i class="fas fa-spinner fa-spin"></i> Sending...</span>
+            <span class="btn-sent"><i class="fas fa-check"></i> Sent!</span>
+          </button>
+        </form>
+
+        <div class="contact-info fade-in" data-delay="300">
+          <h3>Let's Connect</h3>
+          <p>Have a project in mind? Let's talk about how I can help bring your vision to life. Available for freelance work and collaborations.</p>
+          <div class="contact-links">
+            <a href="https://wa.me/393508808971" target="_blank" class="contact-link">
+              <i class="fab fa-whatsapp"></i>
+              <div>
+                <span class="link-label">WhatsApp Business</span>
+                <span class="link-value">+39 350 880 8971</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <a href="#home" class="footer-logo">Nour//Dev</a>
+        <p>&copy; 2025 Nour//Dev. All rights reserved.</p>
+        <div class="footer-socials">
+          <a href="https://wa.me/393508808971" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
 
   <script>
-  (function() {
+  (function () {
     'use strict';
 
+    var $ = function(sel, ctx) { return (ctx || document).querySelector(sel); };
+    var $$ = function(sel, ctx) { return Array.from((ctx || document).querySelectorAll(sel)); };
+
+    var navbar = $('#navbar');
+    var navLinks = $('#navLinks');
+    var hamburger = $('#hamburger');
+    var themeToggle = $('#themeToggle');
+    var scrollTopBtn = $('#scrollTop');
+    var sloganTextEl = $('#sloganText');
+    var contactForm = $('#contactForm');
+
     /* ----------------------------------------------------------
-       FadingVideo — rAF-driven crossfade (no CSS transitions)
+       THEME TOGGLE
+       ---------------------------------------------------------- */
+    var savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+
+    themeToggle.addEventListener('click', function() {
+      var current = document.documentElement.getAttribute('data-theme');
+      var next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+
+    /* ----------------------------------------------------------
+       NAVBAR — scroll styling & active link
+       ---------------------------------------------------------- */
+    var sections = $$('section[id]');
+
+    function onScroll() {
+      var scrollY = window.scrollY;
+      navbar.classList.toggle('scrolled', scrollY > 50);
+      scrollTopBtn.classList.toggle('visible', scrollY > 500);
+
+      var currentSection = '';
+      sections.forEach(function(sec) {
+        var top = sec.offsetTop - 120;
+        if (scrollY >= top) currentSection = sec.id;
+      });
+      $$('.nav-link').forEach(function(link) {
+        link.classList.toggle('active', link.dataset.section === currentSection);
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* ----------------------------------------------------------
+       MOBILE MENU
+       ---------------------------------------------------------- */
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('open');
+    });
+    $$('.nav-link').forEach(function(link) {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    /* ----------------------------------------------------------
+       SCROLL TO TOP
+       ---------------------------------------------------------- */
+    scrollTopBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    /* ----------------------------------------------------------
+       SLOGAN TYPING ANIMATION
+       ---------------------------------------------------------- */
+    var SLOGAN = 'Where Your Vision Becomes Reality';
+    var TYPE_SPEED = 70;
+    var DELETE_SPEED = 40;
+    var PAUSE_FULL = 2000;
+    var PAUSE_EMPTY = 500;
+    var sloganIdx = 0;
+    var sloganDeleting = false;
+
+    function sloganType() {
+      if (!sloganTextEl) return;
+      if (!sloganDeleting) {
+        sloganIdx++;
+        sloganTextEl.textContent = SLOGAN.substring(0, sloganIdx);
+        if (sloganIdx === SLOGAN.length) {
+          sloganDeleting = true;
+          setTimeout(sloganType, PAUSE_FULL);
+          return;
+        }
+        setTimeout(sloganType, TYPE_SPEED);
+      } else {
+        sloganIdx--;
+        sloganTextEl.textContent = SLOGAN.substring(0, sloganIdx);
+        if (sloganIdx === 0) {
+          sloganDeleting = false;
+          setTimeout(sloganType, PAUSE_EMPTY);
+          return;
+        }
+        setTimeout(sloganType, DELETE_SPEED);
+      }
+    }
+    sloganType();
+
+    /* ----------------------------------------------------------
+       FadingVideo — rAF-driven crossfade
        ---------------------------------------------------------- */
     var FADE_MS = 500;
     var FADE_OUT_LEAD = 0.55;
 
-    document.querySelectorAll('[data-fading-video]').forEach(function(video) {
+    $$('[data-fading-video]').forEach(function(video) {
       var rAFId = null;
       var fadingOut = false;
 
@@ -427,40 +1336,9 @@
     });
 
     /* ----------------------------------------------------------
-       BlurText — word-by-word blur-in animation
+       FADE-IN ANIMATIONS with staggered delays
        ---------------------------------------------------------- */
-    document.querySelectorAll('[data-blur-text]').forEach(function(el) {
-      var text = el.textContent.trim();
-      var words = text.split(/\s+/);
-      el.textContent = '';
-
-      words.forEach(function(word, i) {
-        var span = document.createElement('span');
-        span.className = 'blur-word';
-        span.textContent = word;
-        span.style.transitionDelay = (i * 100) + 'ms';
-        el.appendChild(span);
-      });
-
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            el.querySelectorAll('.blur-word').forEach(function(w) {
-              w.classList.add('visible');
-            });
-            observer.disconnect();
-          }
-        });
-      }, { threshold: 0.1 });
-
-      observer.observe(el);
-    });
-
-    /* ----------------------------------------------------------
-       Fade-in animations with staggered delays
-       ---------------------------------------------------------- */
-    var fadeElements = document.querySelectorAll('.fade-in');
-
+    var fadeElements = $$('.fade-in');
     var fadeObserver = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
@@ -472,40 +1350,59 @@
         }
       });
     }, { threshold: 0.1 });
+    fadeElements.forEach(function(el) { fadeObserver.observe(el); });
 
-    fadeElements.forEach(function(el) {
-      fadeObserver.observe(el);
+    /* ----------------------------------------------------------
+       PROJECT FILTERS
+       ---------------------------------------------------------- */
+    var filterBtns = $$('.filter-btn');
+    var projectCards = $$('.project-card');
+
+    filterBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        filterBtns.forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        var filter = btn.dataset.filter;
+        projectCards.forEach(function(card) {
+          var match = filter === 'all' || card.dataset.category === filter;
+          if (match) {
+            card.classList.remove('hidden');
+            card.style.animation = 'fadeUp 0.5s ease forwards';
+          } else {
+            card.classList.add('hidden');
+            card.style.animation = '';
+          }
+        });
+      });
     });
 
     /* ----------------------------------------------------------
-       Mobile menu toggle
+       CONTACT FORM (simulated send)
        ---------------------------------------------------------- */
-    var toggle = document.getElementById('mobileToggle');
-    var menu = document.getElementById('mobileMenu');
-    var line1 = document.getElementById('hamLine1');
-    var line2 = document.getElementById('hamLine2');
-    var line3 = document.getElementById('hamLine3');
-    var menuOpen = false;
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var sendBtn = $('.btn-send', contactForm);
+      sendBtn.classList.add('sending');
+      setTimeout(function() {
+        sendBtn.classList.remove('sending');
+        sendBtn.classList.add('sent');
+        contactForm.reset();
+        setTimeout(function() { sendBtn.classList.remove('sent'); }, 2500);
+      }, 1500);
+    });
 
-    if (toggle && menu) {
-      toggle.addEventListener('click', function() {
-        menuOpen = !menuOpen;
-        menu.classList.toggle('open', menuOpen);
-        line1.style.transform = menuOpen ? 'rotate(45deg) translate(4px, 4px)' : '';
-        line2.style.opacity = menuOpen ? '0' : '1';
-        line3.style.transform = menuOpen ? 'rotate(-45deg) translate(4px, -4px)' : '';
+    /* ----------------------------------------------------------
+       SMOOTH ANCHOR SCROLL
+       ---------------------------------------------------------- */
+    $$('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        var target = document.querySelector(anchor.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
       });
-
-      menu.querySelectorAll('a, button').forEach(function(link) {
-        link.addEventListener('click', function() {
-          menuOpen = false;
-          menu.classList.remove('open');
-          line1.style.transform = '';
-          line2.style.opacity = '1';
-          line3.style.transform = '';
-        });
-      });
-    }
+    });
   })();
   </script>
 </body>
