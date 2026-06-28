@@ -16,7 +16,7 @@
   const hamburger = $('#hamburger');
   const themeToggle = $('#themeToggle');
   const scrollTopBtn = $('#scrollTop');
-  const typingTextEl = $('#typingText');
+  const sloganTextEl = $('#sloganText');
   const contactForm = $('#contactForm');
 
   /* ----------------------------------------------------------
@@ -86,42 +86,41 @@
   });
 
   /* ----------------------------------------------------------
-     TYPING ANIMATION
+     SLOGAN TYPING ANIMATION
+     Type → pause 2s → delete → pause 0.5s → repeat
      ---------------------------------------------------------- */
-  const typingPhrases = ['Web Developer', 'UI/UX Enthusiast', 'Problem Solver'];
-  let phraseIdx = 0;
-  let charIdx = 0;
-  let isDeleting = false;
-  const TYPING_SPEED = 90;
-  const DELETING_SPEED = 50;
-  const PAUSE_AFTER_TYPE = 1800;
-  const PAUSE_AFTER_DELETE = 400;
+  const SLOGAN = 'Where Your Vision Becomes Reality';
+  const TYPE_SPEED = 70;
+  const DELETE_SPEED = 40;
+  const PAUSE_FULL = 2000;
+  const PAUSE_EMPTY = 500;
+  let sloganIdx = 0;
+  let sloganDeleting = false;
 
-  function typeEffect() {
-    const current = typingPhrases[phraseIdx];
-    if (!isDeleting) {
-      typingTextEl.textContent = current.substring(0, charIdx + 1);
-      charIdx++;
-      if (charIdx === current.length) {
-        isDeleting = true;
-        setTimeout(typeEffect, PAUSE_AFTER_TYPE);
+  function sloganType() {
+    if (!sloganTextEl) return;
+    if (!sloganDeleting) {
+      sloganIdx++;
+      sloganTextEl.textContent = SLOGAN.substring(0, sloganIdx);
+      if (sloganIdx === SLOGAN.length) {
+        sloganDeleting = true;
+        setTimeout(sloganType, PAUSE_FULL);
         return;
       }
-      setTimeout(typeEffect, TYPING_SPEED);
+      setTimeout(sloganType, TYPE_SPEED);
     } else {
-      typingTextEl.textContent = current.substring(0, charIdx - 1);
-      charIdx--;
-      if (charIdx === 0) {
-        isDeleting = false;
-        phraseIdx = (phraseIdx + 1) % typingPhrases.length;
-        setTimeout(typeEffect, PAUSE_AFTER_DELETE);
+      sloganIdx--;
+      sloganTextEl.textContent = SLOGAN.substring(0, sloganIdx);
+      if (sloganIdx === 0) {
+        sloganDeleting = false;
+        setTimeout(sloganType, PAUSE_EMPTY);
         return;
       }
-      setTimeout(typeEffect, DELETING_SPEED);
+      setTimeout(sloganType, DELETE_SPEED);
     }
   }
 
-  typeEffect();
+  sloganType();
 
   /* ----------------------------------------------------------
      SCROLL REVEAL

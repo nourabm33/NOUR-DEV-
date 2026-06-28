@@ -63,64 +63,19 @@
 
   <!-- ========== HERO ========== -->
   <section class="hero" id="home">
-    <div class="hero-mesh"></div>
-    <div class="hero-orb hero-orb-1"></div>
-    <div class="hero-orb hero-orb-2"></div>
-    <div class="hero-orb hero-orb-3"></div>
-    <div class="hero-noise"></div>
-    <div class="hero-grid-pattern"></div>
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="assets/video/hero-bg.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-overlay"></div>
 
-    <div class="hero-inner">
-      <div class="hero-text">
-        <div class="hero-badge reveal">
-          <span class="badge-dot"></span>
-          Available for projects
-        </div>
-        <h1 class="hero-name reveal">
-          <span class="hero-name-line">I'm <span class="hero-accent">Nour</span></span>
-        </h1>
-        <div class="hero-typing">
-          <span class="typing-text" id="typingText"></span>
-          <span class="typing-cursor"></span>
-        </div>
-        <p class="hero-tagline reveal">I craft modern, performant web experiences that turn ideas into digital reality. Clean code, great design, real results.</p>
-        <div class="hero-cta reveal">
-          <a href="#projects" class="btn btn-primary">
-            View My Work <i class="fas fa-arrow-right"></i>
-          </a>
-          <a href="#contact" class="btn btn-outline">
-            Let's Talk
-          </a>
-        </div>
-      </div>
-      <div class="hero-visual reveal">
-        <div class="hero-3d-canvas-wrap" id="hero3dCanvasWrap">
-          <canvas id="hero3dCanvas"></canvas>
-        </div>
-        <div class="hero-card-pillars">
-          <div class="hero-pillar">
-            <i class="fas fa-code"></i>
-            <span class="pillar-title">Clean Code</span>
-            <span class="pillar-sub">Built to last</span>
-          </div>
-          <div class="hero-pillar">
-            <i class="fas fa-paint-brush"></i>
-            <span class="pillar-title">Great Design</span>
-            <span class="pillar-sub">Pixel-perfect</span>
-          </div>
-          <div class="hero-pillar">
-            <i class="fas fa-rocket"></i>
-            <span class="pillar-title">Fast Delivery</span>
-            <span class="pillar-sub">On schedule</span>
-          </div>
-        </div>
-      </div>
+    <div class="hero-slogan">
+      <span class="slogan-text" id="sloganText"></span>
+      <span class="slogan-cursor"></span>
     </div>
 
     <div class="hero-scroll">
       <a href="#about" aria-label="Scroll down"><i class="fas fa-chevron-down"></i></a>
     </div>
-    <div class="hero-bottom-line"></div>
   </section>
 
   <!-- ========== ABOUT ========== -->
@@ -486,7 +441,5 @@
   </button>
 
   <script src="script.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="hero3d.js"></script>
 </body>
 </html>
